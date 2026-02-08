@@ -1,0 +1,28 @@
+{
+  "welcome": "환영합니다",
+  "slogan": "Find Your Right, Enjoy Korea.",
+  "home": {
+    "title": "Right K",
+    "services_title": "주요 서비스",
+    "menu1": "국민연금 확인",
+    "menu2": "우편물 판독",
+    "menu3": "센터 찾기",
+    "menu4": "비자 진단",
+    "sos": "긴급 SOS",
+    "coming_soon": "준비 중입니다"
+  },
+  "auth": {
+    "login": "로그인",
+    "signup": "회원가입",
+    "email": "이메일",
+    "password": "비밀번호",
+    "nationality": "국적 선택"
+  },
+  "pension": {
+    "title": "국민연금 계산기",
+    "input_income": "월 평균 소득 (원)",
+    "input_months": "근무 개월 수",
+    "result": "예상 수령액",
+    "not_eligible": "지급 대상이 아닙니다."
+  }
+}
