@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: right-k-app
+    env: node
+    buildCommand: npm install && npx expo export -p web
+    startCommand: npx serve dist --single
+    envVars:
+      - key: NODE_VERSION
+        value: 20.10.0
