@@ -33,8 +33,20 @@ export default function SplashScreen() {
                 // Since this is a splash screen, we can afford a small delay or use onAuthStateChanged
                 const user = auth.currentUser;
                 const hasLaunched = await AsyncStorage.getItem('has_launched');
+                const preferredLanguage = await AsyncStorage.getItem('user_preferred_language');
 
                 timer = setTimeout(() => {
+                    // Logic:
+                    // 1. If no language preferred -> /language (Highest priority for UX)
+                    // 2. If not logged in -> /welcome (first time) or /login
+                    // 3. If logged in but not verified -> /login
+                    // 4. If logged in and verified -> /(tabs)
+
+                    if (!preferredLanguage) {
+                        router.replace('/language');
+                        return;
+                    }
+
                     if (!user) {
                         // Not logged in -> go to Welcome (if first time) or Login
                         if (hasLaunched === 'true') {
@@ -54,7 +66,7 @@ export default function SplashScreen() {
                 return () => clearTimeout(timer);
             } catch (error) {
                 console.error('Navigation check failed:', error);
-                router.replace('/welcome');
+                router.replace('/language'); // Safest default
             }
         };
 

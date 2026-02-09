@@ -1,4 +1,14 @@
 {
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "error": "Error",
+    "save": "Save",
+    "back": "Back",
+    "fillAllFields": "Please fill in all fields",
+    "enterName": "Please enter your name",
+    "authFailed": "Authentication Failed"
+  },
   "mail": {
     "title": "Mail Classifier",
     "subtitle": "AI Document Analysis",
@@ -106,15 +116,6 @@
     "verifiedSuccess": "Email verification completed!",
     "notVerifiedYet": "Not yet verified. Please check your inbox."
   },
-  "common": {
-    "error": "Error",
-    "fillAllFields": "Please fill in all fields",
-    "enterName": "Please enter your name",
-    "authFailed": "Authentication Failed",
-    "ok": "OK",
-    "cancel": "Cancel",
-    "back": "Back"
-  },
   "dashboard": {
     "hello": "Hello, {{name}}",
     "guest": "Guest",
@@ -216,7 +217,8 @@
     "noVisa": "No visa info",
     "expiresOn": "Expires on: {{date}}",
     "noExpiry": "No expiry date",
-    "goHome": "Go to home screen"
+    "goHome": "Go to home screen",
+    "expiredWarning": "Please check your expired status now."
   },
   "profile": {
     "guest": "Guest User",
@@ -398,11 +400,13 @@
     "uploadArc": "Upload ARC Image",
     "foreignerInfo": "Foreigner Info",
     "visaDetails": "Visa Details",
-    "regNum": "Registration Number",
+    "regNum": "Registration Number (ARC)",
     "name": "Name",
     "country": "Country",
     "issueDate": "Issue Date",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "expiredWarningTitle": "Visa Expiration Warning",
+    "expiredWarningDesc": "Your period of stay has expired. You may face fines or deportation for violating the Immigration Control Act. Please contact 1345 or a specialist immediately."
   },
   "tax": {
     "title": "Year-End Settlement Guide",
@@ -425,5 +429,419 @@
     "doc_3": "Medical Expenses Receipts",
     "doc_4": "Lease Contract (if applicable)",
     "actionBtn": "Go to National Tax Service HomTax"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "Diplomatic",
+      "description": "Diplomatic missions and families",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Photo (3.5x4.5cm)",
+          "Proof of Dispatch"
+        ],
+        "company": [
+          "Diplomatic Status Documents"
+        ]
+      }
+    },
+    "A-2": {
+      "name": "Official",
+      "description": "Official government business",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Photo",
+          "Official Business Proof"
+        ],
+        "company": [
+          "Cooperation Letter from Agency"
+        ]
+      }
+    },
+    "A-3": {
+      "name": "Agreements",
+      "description": "SOFA, etc.",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "ID Card (SOFA)"
+        ],
+        "company": [
+          "USFK Assignment Order"
+        ]
+      }
+    },
+    "B-1": {
+      "name": "Visa Exempt",
+      "description": "Visa waiver agreement nationals",
+      "maxStay": "90 days",
+      "requiredDocuments": {
+        "personal": [
+          "Passport (Valid for 6+ months)",
+          "Return Ticket"
+        ],
+        "company": [
+          "Accommodation Proof (Hotel Reservation)"
+        ]
+      }
+    },
+    "B-2": {
+      "name": "Tourist/Transit",
+      "description": "Tourism or transit",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Visa Application",
+          "Travel Itinerary"
+        ],
+        "company": [
+          "Financial Proof (Bank Statement)"
+        ]
+      }
+    },
+    "C-1": {
+      "name": "Temporary News",
+      "description": "Temporary journalistic activities",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Press Card or Employment Proof"
+        ],
+        "company": [
+          "Assignment Letter",
+          "Bureau Establishment Permit"
+        ]
+      }
+    },
+    "C-3": {
+      "name": "Short Term Visit",
+      "description": "Tourism, family visit, events",
+      "maxStay": "90 days",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Invitation Letter (Family)"
+        ],
+        "company": [
+          "Event Invitation (Business)"
+        ]
+      }
+    },
+    "C-4": {
+      "name": "Short Term Employment",
+      "description": "Short term profit activities (lecture, modeling)",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Degree or Career Proof"
+        ],
+        "company": [
+          "Employment Contract",
+          "Invitation Letter"
+        ]
+      }
+    },
+    "D-1": {
+      "name": "Culture/Arts",
+      "description": "Academic or artistic activities",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Artistic Portfolio/Career Proof"
+        ],
+        "company": [
+          "Performance Contract or Invitation"
+        ]
+      }
+    },
+    "D-2": {
+      "name": "Student",
+      "description": "Degree seeking students (Associate to PhD)",
+      "allowedActivities": [
+        "Part-time work (with permission)"
+      ],
+      "notes": [
+        "D-2-1 to D-2-4 sub-types exist"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Final School Certificate",
+          "Financial Proof (~20M KRW)"
+        ],
+        "company": [
+          "Certificate of Admission",
+          "University Business Registration"
+        ]
+      }
+    },
+    "D-4": {
+      "name": "General Training",
+      "description": "Language training, technical training",
+      "allowedActivities": [
+        "Part-time work (after 6 months, with permission)"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Financial Proof",
+          "Training Plan"
+        ],
+        "company": [
+          "Certificate of Admission (Language)",
+          "Institution Documents"
+        ]
+      }
+    },
+    "D-7": {
+      "name": "Intra-Company Transfer",
+      "description": "Foreign company assignee",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Dispatch Order",
+          "Employment Proof (HQ)"
+        ],
+        "company": [
+          "Branch Establishment Documents",
+          "Tax Clearance"
+        ]
+      }
+    },
+    "D-8": {
+      "name": "Corporate Investment",
+      "description": "FDI corporation investment/management",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Investment Transfer Record"
+        ],
+        "company": [
+          "FDI Company Registration",
+          "Business Registration"
+        ]
+      }
+    },
+    "D-9": {
+      "name": "Trade Management",
+      "description": "International trade management",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Trade Performance Proof"
+        ],
+        "company": [
+          "Trade Business Code",
+          "Business Registration"
+        ]
+      }
+    },
+    "D-10": {
+      "name": "Job Seeker",
+      "description": "Job seeking or internship",
+      "maxStay": "6 months per extension",
+      "notes": [
+        "Can switch to E-7"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport Copy",
+          "Standard Photo",
+          "Degree Certificate",
+          "Job Seeking Plan"
+        ],
+        "company": [
+          "N/A"
+        ]
+      }
+    },
+    "E-7-1": {
+      "name": "Professional",
+      "description": "67 designated professional occupations",
+      "salaryRequirement": "approx. 28.67M KRW (2025)",
+      "notes": [
+        "Includes managers, developers, engineers"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Degree (Bachelor+)",
+          "Experience Proof (1yr+, if needed)",
+          "Certificates"
+        ],
+        "company": [
+          "Employment Contract",
+          "Reason for Hiring",
+          "Business Registration",
+          "Tax Proof"
+        ]
+      }
+    },
+    "E-7-2": {
+      "name": "Semi-Professional",
+      "description": "Office & Service (Duty free, Medical coord, Chef)",
+      "salaryRequirement": "approx. 25.15M KRW",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Degree or Certificate",
+          "Experience Proof"
+        ],
+        "company": [
+          "Employment Contract",
+          "Sector Specific Documents"
+        ]
+      }
+    },
+    "E-7-3": {
+      "name": "General Skilled",
+      "description": "Welding, Aircraft mechanism, etc.",
+      "salaryRequirement": "approx. 25.15M KRW",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Technician Certificate",
+          "Experience Proof"
+        ],
+        "company": [
+          "Employment Contract",
+          "Business Registration"
+        ]
+      }
+    },
+    "E-7-4": {
+      "name": "Skilled Worker",
+      "description": "Points-based selection for E-9/H-2 holders",
+      "salaryRequirement": "26M KRW+ (Consideration)",
+      "notes": [
+        "K-Point E74: Max 300, Pass 200+",
+        "E-7-4R: Regional residence required (Family can work simple labor)",
+        "Incentive: Population decrease area (50% hiring ratio)"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport & ARC",
+          "Standard Photo",
+          "Points Proof Documents",
+          "TOPIK Certificate"
+        ],
+        "company": [
+          "Employment Contract",
+          "Tax Certificate",
+          "Start-up / Employment Insurance List"
+        ]
+      }
+    },
+    "E-9": {
+      "name": "Non-Professional",
+      "description": "EPS workers (Manufacturing, Agriculture, etc.)",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Medical Check (Drug Test)"
+        ],
+        "company": [
+          "Standard Labor Contract (EPS)",
+          "Employment Permit"
+        ]
+      }
+    },
+    "F-1-D": {
+      "name": "Digital Nomad",
+      "description": "Remote work for overseas employers",
+      "salaryRequirement": "88.1M KRW+ (GNI x2)",
+      "restrictedActivities": [
+        "Local employment prohibited"
+      ]
+    },
+    "F-2-7": {
+      "name": "Points Resident",
+      "description": "Long-term residency for professionals/students",
+      "salaryRequirement": "GNI linked (Score factor)",
+      "notes": [
+        "Score: Max 120, Pass 80+",
+        "K-STAR Track: STEM Master/PhD (KAIST/UNIST) + Recommendation",
+        "Income > 40M waives 3yr stay requirement",
+        "Risk: Downgrade to D-10 if unemployed/low income"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport & ARC",
+          "Degree Certificate",
+          "Income Certificate",
+          "Withholding Receipt"
+        ],
+        "company": [
+          "Business Registration",
+          "Employment Insurance History"
+        ]
+      }
+    },
+    "F-4": {
+      "name": "Overseas Korean",
+      "description": "Overseas Koreans and direct descendants",
+      "notes": [
+        "Simple labor allowed in regional areas (53 jobs)",
+        "Simple labor fully allowed from Feb 2026",
+        "Documents: Apostille/Consular verification required (FBI Check etc.)"
+      ],
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Family Relation Proof (F-4 Eligibility)",
+          "Overseas Criminal Record"
+        ],
+        "company": [
+          "Special Employment Confirmation (Simple Labor)"
+        ]
+      }
+    },
+    "F-5": {
+      "name": "Permanent Resident",
+      "description": "Permanent residence status",
+      "salaryRequirement": "GNI x1 (~50M) or x2 (~100M)",
+      "notes": [
+        "GNI ~49.95M KRW (2025)",
+        "F-5-1 (Generic 5yr): GNI x2",
+        "F-5-10 (STEM Bachelor/Master): GNI x1",
+        "F-5-16 (F-2-7 3yr): GNI x2"
+      ]
+    },
+    "F-6": {
+      "name": "Marriage Migrant",
+      "description": "Spouse of Korean national",
+      "salaryRequirement": "23.6M (2p) - 36.6M (4p) KRW",
+      "allowedActivities": [
+        "Full employment rights"
+      ],
+      "notes": [
+        "Income: 30.1M (3p), 36.6M (4p) (2025)",
+        "Exemptions for children (Income/Korean waived)",
+        "Korean: TOPIK 1+ or Sejong Basic",
+        "Assets (5%) can be converted to income"
+      ]
+    },
+    "H-2": {
+      "name": "Work and Visit",
+      "description": "Work and visit for ethnic Koreans",
+      "requiredDocuments": {
+        "personal": [
+          "Passport",
+          "Family/Compatriot Proof",
+          "Health Check"
+        ],
+        "company": [
+          "Special Employment Confirmation (Employer)"
+        ]
+      }
+    },
+    "K-CULTURE": {
+      "name": "Hallyu Visa",
+      "description": "Training in K-pop/culture academies",
+      "notes": [
+        "Requires agency/academy acceptance"
+      ]
+    }
   }
 }

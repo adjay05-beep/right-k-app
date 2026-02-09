@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -15,9 +16,16 @@ export default function LanguageScreen() {
     const router = useRouter();
     const { t, i18n } = useTranslation();
 
-    const handleSelectLanguage = (langCode: string) => {
-        i18n.changeLanguage(langCode);
-        router.replace('/login');
+    const handleSelectLanguage = async (langCode: string) => {
+        try {
+            await AsyncStorage.setItem('user_preferred_language', langCode);
+            i18n.changeLanguage(langCode);
+            router.replace('/login');
+        } catch (error) {
+            console.error('Failed to save language preference:', error);
+            i18n.changeLanguage(langCode);
+            router.replace('/login');
+        }
     };
 
     return (

@@ -9,6 +9,7 @@ import { calculateD10, calculateE74, calculateF27, calculateF5, D10Input, E74Inp
 
 
 import { NoticeCard } from '../../components/ui/NoticeCard';
+import { VisaDropdown } from '../../components/visa/VisaDropdown';
 import { VISA_TYPES } from '../../constants/visa-policy-data';
 
 type VisaType = 'E-7-4' | 'F-2-7' | 'D-10' | 'F-5' | 'ALL';
@@ -18,7 +19,6 @@ export default function VisaCalculatorScreen() {
     const { t } = useTranslation();
 
     const [selectedVisaCode, setSelectedVisaCode] = useState<string>('E-7-4');
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [result, setResult] = useState<VisaScore | null>(null);
 
     // E-7-4 State
@@ -382,130 +382,69 @@ export default function VisaCalculatorScreen() {
         </>
     );
 
-    const VisaDropdown = () => {
-        const sortedVisas = Object.values(VISA_TYPES).sort((a, b) => a.code.localeCompare(b.code));
-        const categories = [...new Set(sortedVisas.map(v => v.category))];
+    // VisaDropdown moved to d:/Right%20K/components/visa/VisaDropdown.tsx
+    // VisaInfoSection integrated below
 
-        const categoryMap: Record<string, string> = {
-            'Professional': t('visaCalc.categories.professional'),
-            'Resident': t('visaCalc.categories.resident'),
-            'ShortTerm': t('visaCalc.categories.shortTerm'),
-            'Education': t('visaCalc.categories.education'),
-            'Overseas': t('visaCalc.categories.overseas'),
-            'Diplomatic': t('visaCalc.categories.diplomatic'),
-            'Other': t('visaCalc.categories.other')
-        };
+    const VisaInfoSection = ({ visa }: { visa: typeof VISA_TYPES[string] }) => {
+        const visaName = t(`visaTypes.${visa.code}.name`);
+        const description = t(`visaTypes.${visa.code}.description`);
+        const maxStay = t(`visaTypes.${visa.code}.maxStay`);
+        const salaryRequirement = t(`visaTypes.${visa.code}.salaryRequirement`);
+        const allowedActivities = t(`visaTypes.${visa.code}.allowedActivities`, { returnObjects: true });
+        const notes = t(`visaTypes.${visa.code}.notes`, { returnObjects: true });
+
+        // Helper: Check if translation exists (simple check against key return)
+        const hasValue = (val: any, key: string) => val && val !== `visaTypes.${visa.code}.${key}`;
 
         return (
-            <View style={styles.dropdownWrapper}>
-                <TouchableOpacity
-                    style={styles.dropdownButton}
-                    onPress={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                    <View style={styles.dropdownButtonContent}>
-                        <View style={styles.selectedVisaBadge}>
-                            <Text style={styles.selectedVisaBadgeText}>{selectedVisaCode}</Text>
-                        </View>
-                        <Text style={styles.selectedVisaName} numberOfLines={1}>
-                            {VISA_TYPES[selectedVisaCode]?.name || selectedVisaCode}
-                        </Text>
-                        <MaterialIcons
-                            name={isDropdownOpen ? "expand-less" : "expand-more"}
-                            size={24}
-                            color={COLORS.primary[600]}
-                        />
+            <View style={styles.infoCard}>
+                <View style={styles.infoCardHeader}>
+                    <View style={styles.infoBadgeLarge}>
+                        <Text style={styles.infoBadgeTextLarge}>{visa.code}</Text>
                     </View>
-                </TouchableOpacity>
+                    <Text style={styles.infoTitle}>{visaName}</Text>
+                </View>
 
-                {isDropdownOpen && (
-                    <View style={styles.dropdownMenu}>
-                        <ScrollView style={{ maxHeight: 300 }} nestedScrollEnabled={true}>
-                            {categories.map(cat => (
-                                <View key={cat}>
-                                    <View style={styles.dropdownCategoryHeader}>
-                                        <Text style={styles.dropdownCategoryText}>{categoryMap[cat] || cat}</Text>
-                                    </View>
-                                    {sortedVisas.filter(v => v.category === cat).map(visa => (
-                                        <TouchableOpacity
-                                            key={visa.code}
-                                            style={[
-                                                styles.dropdownItem,
-                                                selectedVisaCode === visa.code && styles.dropdownItemActive
-                                            ]}
-                                            onPress={() => {
-                                                setSelectedVisaCode(visa.code);
-                                                setIsDropdownOpen(false);
-                                            }}
-                                        >
-                                            <View style={styles.visaBadgeSmall}>
-                                                <Text style={styles.visaBadgeTextSmall}>{visa.code}</Text>
-                                            </View>
-                                            <Text style={[
-                                                styles.dropdownItemText,
-                                                selectedVisaCode === visa.code && styles.dropdownItemTextActive
-                                            ]}>
-                                                {visa.name}
-                                            </Text>
-                                            {selectedVisaCode === visa.code && (
-                                                <MaterialIcons name="check" size={18} color={COLORS.primary[500]} />
-                                            )}
-                                        </TouchableOpacity>
-                                    ))}
-                                </View>
-                            ))}
-                        </ScrollView>
+                {hasValue(description, 'description') && (
+                    <Text style={styles.infoHighlight}>{description}</Text>
+                )}
+
+                <View style={styles.infoGrid}>
+                    {hasValue(maxStay, 'maxStay') && (
+                        <View style={styles.infoGridItem}>
+                            <Text style={styles.infoGridLabel}>{t('visaCalc.common.stayDuration')}</Text>
+                            <Text style={styles.infoGridValue}>{maxStay}</Text>
+                        </View>
+                    )}
+                    {hasValue(salaryRequirement, 'salaryRequirement') && (
+                        <View style={styles.infoGridItem}>
+                            <Text style={styles.infoGridLabel}>{t('visaCalc.common.requirements')}</Text>
+                            <Text style={styles.infoGridValue}>{salaryRequirement}</Text>
+                        </View>
+                    )}
+                </View>
+
+                {Array.isArray(allowedActivities) && allowedActivities.length > 0 && (
+                    <View style={styles.infoSubSection}>
+                        <Text style={styles.infoSubTitle}>{t('visaCalc.common.allowedActivities')}</Text>
+                        <Text style={styles.infoSubText}>{allowedActivities.join(', ')}</Text>
+                    </View>
+                )}
+
+                {Array.isArray(notes) && notes.length > 0 && (
+                    <View style={styles.infoSubSection}>
+                        <Text style={styles.infoSubTitle}>{t('visaCalc.common.notes')}</Text>
+                        {(notes as string[]).map((note, idx) => (
+                            <View key={idx} style={styles.infoNoteRow}>
+                                <View style={styles.infoNoteDot} />
+                                <Text style={styles.infoNoteText}>{note}</Text>
+                            </View>
+                        ))}
                     </View>
                 )}
             </View>
         );
     };
-
-    const VisaInfoSection = ({ visa }: { visa: typeof VISA_TYPES[string] }) => (
-        <View style={styles.infoCard}>
-            <View style={styles.infoCardHeader}>
-                <View style={styles.infoBadgeLarge}>
-                    <Text style={styles.infoBadgeTextLarge}>{visa.code}</Text>
-                </View>
-                <Text style={styles.infoTitle}>{visa.name}</Text>
-            </View>
-
-            <Text style={styles.infoHighlight}>{visa.description}</Text>
-
-            <View style={styles.infoGrid}>
-                {visa.maxStay && (
-                    <View style={styles.infoGridItem}>
-                        <Text style={styles.infoGridLabel}>{t('visaCalc.common.stayDuration')}</Text>
-                        <Text style={styles.infoGridValue}>{visa.maxStay}</Text>
-                    </View>
-                )}
-                {visa.salaryRequirement && (
-                    <View style={styles.infoGridItem}>
-                        <Text style={styles.infoGridLabel}>{t('visaCalc.common.requirements')}</Text>
-                        <Text style={styles.infoGridValue}>{visa.salaryRequirement}</Text>
-                    </View>
-                )}
-            </View>
-
-            {visa.allowedActivities && visa.allowedActivities.length > 0 && (
-                <View style={styles.infoSubSection}>
-                    <Text style={styles.infoSubTitle}>{t('visaCalc.common.allowedActivities')}</Text>
-                    <Text style={styles.infoSubText}>{visa.allowedActivities.join(', ')}</Text>
-                </View>
-            )}
-
-            {visa.notes && visa.notes.length > 0 && (
-                <View style={styles.infoSubSection}>
-                    <Text style={styles.infoSubTitle}>{t('visaCalc.common.notes')}</Text>
-                    {visa.notes.map((note, idx) => (
-                        <View key={idx} style={styles.infoNoteRow}>
-                            <View style={styles.infoNoteDot} />
-                            <Text style={styles.infoNoteText}>{note}</Text>
-                        </View>
-                    ))}
-                </View>
-            )}
-        </View>
-    );
 
     const LegalDisclaimer = () => (
         <NoticeCard
@@ -523,7 +462,7 @@ export default function VisaCalculatorScreen() {
 
             {/* Top Dropdown Selection */}
             <View style={styles.tabContainer}>
-                <VisaDropdown />
+                <VisaDropdown selectedVisaCode={selectedVisaCode} onSelect={setSelectedVisaCode} />
             </View>
 
             <View style={{ padding: SPACING.md, paddingBottom: 0 }}>
@@ -586,100 +525,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#eee',
         zIndex: 100, // For dropdown overlap
-    },
-    dropdownWrapper: {
-        padding: SPACING.md,
-        position: 'relative',
-    },
-    dropdownButton: {
-        backgroundColor: '#f8f9fa',
-        borderWidth: 1.5,
-        borderColor: COLORS.primary[200],
-        borderRadius: 12,
-        paddingHorizontal: SPACING.md,
-        paddingVertical: 12,
-    },
-    dropdownButtonContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    selectedVisaBadge: {
-        backgroundColor: COLORS.primary[500],
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 6,
-        marginRight: 10,
-    },
-    selectedVisaBadgeText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: 14,
-    },
-    selectedVisaName: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#333',
-    },
-    dropdownMenu: {
-        position: 'absolute',
-        top: 65,
-        left: SPACING.md,
-        right: SPACING.md,
-        backgroundColor: '#fff',
-        borderRadius: 12,
-        ...SHADOWS.md,
-        borderWidth: 1,
-        borderColor: '#eee',
-        zIndex: 1000,
-        overflow: 'hidden',
-    },
-    dropdownCategoryHeader: {
-        backgroundColor: '#f5f7fa',
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
-    },
-    dropdownCategoryText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#777',
-        textTransform: 'uppercase',
-    },
-    dropdownItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#f5f5f5',
-    },
-    dropdownItemActive: {
-        backgroundColor: COLORS.primary[50],
-    },
-    dropdownItemText: {
-        flex: 1,
-        fontSize: 15,
-        color: '#444',
-    },
-    dropdownItemTextActive: {
-        color: COLORS.primary[600],
-        fontWeight: 'bold',
-    },
-    visaBadgeSmall: {
-        backgroundColor: '#eee',
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderRadius: 4,
-        marginRight: 10,
-        width: 50,
-        alignItems: 'center',
-    },
-    visaBadgeTextSmall: {
-        fontSize: 11,
-        fontWeight: '700',
-        color: '#666',
     },
     infoCard: {
         backgroundColor: '#fff',

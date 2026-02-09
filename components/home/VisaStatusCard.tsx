@@ -39,9 +39,14 @@ export const VisaStatusCard = () => {
                         {/* Removed iconBox */}
                         <View style={styles.info}>
                             <Text style={styles.visaType}>{visaType || t('visaStatusCard.noVisa')}</Text>
-                            <Text style={styles.expiry}>
+                            <Text style={[styles.expiry, !isPositive && styles.textError]}>
                                 {expiryDate ? t('visaStatusCard.expiresOn', { date: expiryDate }) : t('visaStatusCard.noExpiry')}
                             </Text>
+                            {!isPositive && expiryDate && (
+                                <Text style={styles.expiredWarning}>
+                                    {t('visaStatusCard.expiredWarning')}
+                                </Text>
+                            )}
                         </View>
                         <View style={[styles.badge, isPositive ? styles.badgePositive : styles.badgeNegative]}>
                             <Text style={[styles.badgeText, isPositive ? styles.textPositive : styles.textNegative]}>
@@ -122,5 +127,15 @@ const styles = StyleSheet.create({
     },
     textNegative: {
         color: COLORS.error.dark,
+    },
+    textError: {
+        color: COLORS.error.main,
+        fontWeight: 'bold',
+    },
+    expiredWarning: {
+        fontSize: 11,
+        color: COLORS.error.main,
+        marginTop: 2,
+        fontWeight: '600',
     },
 });

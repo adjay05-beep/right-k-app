@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
+import { NoticeCard } from '../../components/ui/NoticeCard';
 import { useAuthStore } from '../../store/authStore';
 import { useVisaStore } from '../../store/visaStore';
 import { analyzeARC } from '../../utils/ocrService';
@@ -147,49 +148,60 @@ export default function ProfileScreen() {
                             </>
                         )}
                     </LinearGradient>
+                </View>
 
-                    {/* Visa Status Card (Only if logged in) */}
-                    {user && (
-                        <TouchableOpacity
-                            onPress={() => router.push('/features/visa-status')}
-                            activeOpacity={0.9}
-                            className="w-[90%] bg-white p-5 rounded-2xl shadow-md border border-gray-100 -mt-16 mb-4"
+                {dDay.startsWith('D+') && (
+                    <View className="px-6 mb-6">
+                        <NoticeCard
+                            variant="error"
+                            icon="report-problem"
+                            title={t('visaStatus.expiredWarningTitle')}
                         >
-                            <View className="flex-row justify-between items-center mb-2">
-                                <Text className="text-gray-500 text-xs font-bold uppercase tracking-wider">{t('profile.stayExpiration')}</Text>
-                                <MaterialIcons name="edit" size={16} color="#9CA3AF" />
-                            </View>
-                            <View className="flex-row justify-between items-end">
-                                <Text className="text-3xl font-extrabold text-slate-800">{expiryDate || '-'}</Text>
-                                <View className={`px-2 py-1 rounded-md ${dDay.startsWith('D-') ? 'bg-emerald-100' : 'bg-rose-100'}`}>
-                                    <Text className={`font-bold text-sm ${dDay.startsWith('D-') ? 'text-emerald-600' : 'text-rose-600'}`}>{dDay}</Text>
-                                </View>
-                            </View>
-                            <View className="w-full bg-gray-200 h-2 rounded-full mt-4 overflow-hidden">
-                                <View
-                                    className="h-full bg-slate-800 rounded-full"
-                                    style={{ width: `${progressPercent}%` }}
-                                />
-                            </View>
-                            <Text className="text-right text-xs text-gray-400 mt-1">{t('profile.completed', { percent: progressPercent })}</Text>
-                        </TouchableOpacity>
-                    )}
+                            {t('visaStatus.expiredWarningDesc')}
+                        </NoticeCard>
+                    </View>
+                )}
 
-                    {/* Quick Scan Button */}
-                    {user && (
-                        <View className="w-[90%] -mt-2 mb-6">
-                            <Button
-                                title={t('visaStatus.uploadArc')}
-                                onPress={handleScanARC}
-                                variant="primary"
-                                loading={isScanning}
-                                icon={<MaterialIcons name="camera-alt" size={20} color="white" />}
-                                style={{ backgroundColor: '#2563eb', borderRadius: 16 }}
+                {/* Visa Status Card (Only if logged in) */}
+                {user && (
+                    <TouchableOpacity
+                        onPress={() => router.push('/features/visa-status')}
+                        activeOpacity={0.9}
+                        className="w-[90%] bg-white p-5 rounded-2xl shadow-md border border-gray-100 -mt-16 mb-4"
+                    >
+                        <View className="flex-row justify-between items-center mb-2">
+                            <Text className="text-gray-500 text-xs font-bold uppercase tracking-wider">{t('profile.stayExpiration')}</Text>
+                            <MaterialIcons name="edit" size={16} color="#9CA3AF" />
+                        </View>
+                        <View className="flex-row justify-between items-end">
+                            <Text className="text-3xl font-extrabold text-slate-800">{expiryDate || '-'}</Text>
+                            <View className={`px-2 py-1 rounded-md ${dDay.startsWith('D-') ? 'bg-emerald-100' : 'bg-rose-100'}`}>
+                                <Text className={`font-bold text-sm ${dDay.startsWith('D-') ? 'text-emerald-600' : 'text-rose-600'}`}>{dDay}</Text>
+                            </View>
+                        </View>
+                        <View className="w-full bg-gray-200 h-2 rounded-full mt-4 overflow-hidden">
+                            <View
+                                className="h-full bg-slate-800 rounded-full"
+                                style={{ width: `${progressPercent}%` }}
                             />
                         </View>
-                    )}
+                        <Text className="text-right text-xs text-gray-400 mt-1">{t('profile.completed', { percent: progressPercent })}</Text>
+                    </TouchableOpacity>
+                )}
 
-                </View>
+                {/* Quick Scan Button */}
+                {user && (
+                    <View className="w-[90%] -mt-2 mb-6">
+                        <Button
+                            title={t('visaStatus.uploadArc')}
+                            onPress={handleScanARC}
+                            variant="primary"
+                            loading={isScanning}
+                            icon={<MaterialIcons name="camera-alt" size={20} color="white" />}
+                            style={{ backgroundColor: '#2563eb', borderRadius: 16 }}
+                        />
+                    </View>
+                )}
 
                 {/* Menu Items */}
                 <View className="px-6 pb-20">
@@ -219,8 +231,8 @@ export default function ProfileScreen() {
                         </TouchableOpacity>
                     )}
                 </View>
-            </ScrollView>
-        </View>
+            </ScrollView >
+        </View >
     );
 }
 

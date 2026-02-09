@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
+import { NoticeCard } from '../../components/ui/NoticeCard';
 import { ScreenHeader } from '../../components/ui/ScreenHeader';
 import { TextField } from '../../components/ui/TextField';
+import { VisaDropdown } from '../../components/visa/VisaDropdown';
 import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../../constants/design-system';
 import { VISA_TYPES } from '../../constants/visa-policy-data';
 import { useVisaStore } from '../../store/visaStore';
@@ -49,23 +51,30 @@ export default function VisaStatusScreen() {
         setIsEditing(!isEditing);
     };
 
-    const handleSave = () => {
-        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-        if ((editExpiry && !dateRegex.test(editExpiry)) || (editIssue && !dateRegex.test(editIssue))) {
-            Alert.alert(t('common.error'), t('visaStatus.invalidDate'));
-            return;
-        }
+    const handleSave = async () => {
+        try {
+            console.log('[VisaStatus] Saving details:', { editType, editExpiry });
+            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+            if ((editExpiry && !dateRegex.test(editExpiry)) || (editIssue && !dateRegex.test(editIssue))) {
+                Alert.alert(t('common.error'), t('visaStatus.invalidDate'));
+                return;
+            }
 
-        setVisaDetails({
-            visaType: editType,
-            expiryDate: editExpiry,
-            issueDate: editIssue,
-            regNumber: editRegNumber,
-            name: editName,
-            country: editCountry
-        });
-        setIsEditing(false);
-        Alert.alert(t('common.ok'), t('visaStatus.savedSuccess'));
+            await setVisaDetails({
+                visaType: editType,
+                expiryDate: editExpiry || null,
+                issueDate: editIssue || null,
+                regNumber: editRegNumber,
+                name: editName,
+                country: editCountry
+            });
+
+            setIsEditing(false);
+            Alert.alert(t('common.ok'), t('visaStatus.savedSuccess'));
+        } catch (error) {
+            console.error('[VisaStatus] Save failed:', error);
+            Alert.alert(t('common.error'), t('common.authFailed')); // Generic fallback
+        }
     };
 
     const scheduleVisaNotifications = async (expiryDateStr: string) => {
@@ -164,7 +173,8 @@ export default function VisaStatusScreen() {
     };
 
     const dDay = calculateDDay(expiryDate);
-    const isPositive = dDay.startsWith('D-');
+    const isExpired = dDay.startsWith('D+');
+    const isPositive = dDay.startsWith('D-') || dDay === 'D-0';
 
     const router = useRouter();
 
@@ -195,6 +205,17 @@ export default function VisaStatusScreen() {
             />
 
             <ScrollView contentContainerStyle={styles.content}>
+                {isExpired && (
+                    <NoticeCard
+                        variant="error"
+                        icon="report-problem"
+                        title={t('visaStatus.expiredWarningTitle')}
+                        style={{ marginBottom: SPACING.md }}
+                    >
+                        {t('visaStatus.expiredWarningDesc')}
+                    </NoticeCard>
+                )}
+
                 <View style={styles.disclaimerCard}>
                     <View style={styles.disclaimerHeader}>
                         <MaterialIcons name="warning" size={18} color={COLORS.error.main} />
@@ -209,7 +230,7 @@ export default function VisaStatusScreen() {
                     variant="primary"
                     icon={<MaterialIcons name="camera-alt" size={20} color={COLORS.white} />}
                     loading={isScanning}
-                    style={[styles.scanButton, { marginBottom: 24 }]}
+                    style={StyleSheet.flatten([styles.scanButton, { marginBottom: 24 }])}
                     fullWidth
                 />
 
@@ -218,7 +239,7 @@ export default function VisaStatusScreen() {
                         <View style={styles.formSection}>
                             <Text style={styles.sectionTitle}>{t('visaStatus.foreignerInfo')}</Text>
                             <TextField
-                                label={t('visa_status.arc_label')}
+                                label={t('visaStatus.regNum')}
                                 value={editRegNumber}
                                 onChangeText={setEditRegNumber}
                                 placeholder="000000-0000000"
@@ -241,12 +262,10 @@ export default function VisaStatusScreen() {
                         {/* Visa Details Form */}
                         <View style={styles.formSection}>
                             <Text style={styles.sectionTitle}>{t('visaStatus.visaDetails')}</Text>
-                            <TextField
-                                label={t('visaStatus.visaType')}
-                                value={editType}
-                                onChangeText={setEditType}
-                                placeholder="E-7-4"
-                            />
+                            <View style={{ marginBottom: SPACING.md }}>
+                                <Text style={TYPOGRAPHY.label}>{t('visaStatus.visaType')}</Text>
+                                <VisaDropdown selectedVisaCode={editType} onSelect={setEditType} />
+                            </View>
                             <TextField
                                 label={t('visaStatus.expiryDate')}
                                 value={editExpiry}
@@ -307,27 +326,27 @@ export default function VisaStatusScreen() {
                         {visaType && VISA_TYPES[visaType] && (
                             <View style={styles.policyContainer}>
                                 <Text style={styles.sectionTitle}>
-                                    {VISA_TYPES[visaType].name} Info
+                                    {t(`visaTypes.${visaType}.name`)} Info
                                 </Text>
                                 <Text style={styles.policyDesc}>
-                                    {VISA_TYPES[visaType].description}
+                                    {t(`visaTypes.${visaType}.description`)}
                                 </Text>
-                                {VISA_TYPES[visaType].salaryRequirement && (
+                                {t(`visaTypes.${visaType}.salaryRequirement`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.salaryRequirement`) !== `visaTypes.${visaType}.salaryRequirement` && (
                                     <View style={styles.policyRow}>
                                         <Text style={styles.policyLabel}>Min. Salary:</Text>
-                                        <Text style={styles.policyValue}>{VISA_TYPES[visaType].salaryRequirement}</Text>
+                                        <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.salaryRequirement`)}</Text>
                                     </View>
                                 )}
-                                {VISA_TYPES[visaType].maxStay && (
+                                {t(`visaTypes.${visaType}.maxStay`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.maxStay`) !== `visaTypes.${visaType}.maxStay` && (
                                     <View style={styles.policyRow}>
                                         <Text style={styles.policyLabel}>Max Stay:</Text>
-                                        <Text style={styles.policyValue}>{VISA_TYPES[visaType].maxStay}</Text>
+                                        <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.maxStay`)}</Text>
                                     </View>
                                 )}
-                                {VISA_TYPES[visaType].notes && (
+                                {Array.isArray(t(`visaTypes.${visaType}.notes`, { returnObjects: true })) && (
                                     <View style={styles.policyNoteBox}>
                                         <Text style={styles.policyNoteTitle}>Tips:</Text>
-                                        {VISA_TYPES[visaType].notes.map((note, idx) => (
+                                        {(t(`visaTypes.${visaType}.notes`, { returnObjects: true }) as string[]).map((note, idx) => (
                                             <Text key={idx} style={styles.policyNoteText}>• {note}</Text>
                                         ))}
                                     </View>
