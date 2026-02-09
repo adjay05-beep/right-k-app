@@ -313,7 +313,13 @@
       "minSalary": "Minimum Annual Salary: {{salary}}",
       "totalScore": "Total Score",
       "goal": "Goal: {{threshold}}{{unit}} (Current {{value}})",
-      "gniPercent": "GNI %"
+      "gniPercent": "GNI %",
+      "description": "Visa Description",
+      "requirements": "Requirements",
+      "stayDuration": "Stay Duration",
+      "allowedActivities": "Allowed Activities",
+      "restrictedActivities": "Restricted Activities",
+      "notes": "Important Notes"
     },
     "e74": {
       "title": "E-7-4 Score Calculator",

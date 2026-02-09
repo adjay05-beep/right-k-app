@@ -17,7 +17,8 @@ export default function VisaCalculatorScreen() {
     const router = useRouter();
     const { t } = useTranslation();
 
-    const [activeTab, setActiveTab] = useState<VisaType>('E-7-4');
+    const [selectedVisaCode, setSelectedVisaCode] = useState<string>('E-7-4');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [result, setResult] = useState<VisaScore | null>(null);
 
     // E-7-4 State
@@ -59,18 +60,18 @@ export default function VisaCalculatorScreen() {
 
     useEffect(() => {
         calculateScore();
-    }, [e74Data, f27Data, d10Data, f5Data, activeTab]);
+    }, [e74Data, f27Data, d10Data, f5Data, selectedVisaCode]);
 
     const calculateScore = () => {
         let res: VisaScore;
-        if (activeTab === 'E-7-4') {
+        if (selectedVisaCode === 'E-7-4') {
             res = calculateE74(e74Data);
-        } else if (activeTab === 'F-2-7') {
+        } else if (selectedVisaCode === 'F-2-7') {
             const f27Res = calculateF27(f27Data);
             res = { ...f27Res, details: { validYears: f27Res.validYears } };
-        } else if (activeTab === 'D-10') {
+        } else if (selectedVisaCode === 'D-10') {
             res = calculateD10(d10Data);
-        } else if (activeTab === 'F-5') {
+        } else if (selectedVisaCode === 'F-5') {
             res = calculateF5(f5Data);
         } else {
             res = { score: 0, pass: false };
@@ -78,14 +79,6 @@ export default function VisaCalculatorScreen() {
         setResult(res);
     };
 
-    const TabButton = ({ type, label }: { type: VisaType, label: string }) => (
-        <TouchableOpacity
-            style={[styles.tabButton, activeTab === type && styles.tabButtonActive]}
-            onPress={() => setActiveTab(type)}
-        >
-            <Text style={[styles.tabText, activeTab === type && styles.tabTextActive]}>{label}</Text>
-        </TouchableOpacity>
-    );
 
     const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
         <View style={styles.section}>
@@ -389,13 +382,9 @@ export default function VisaCalculatorScreen() {
         </>
     );
 
-    const renderAllVisas = () => {
-        // Group by category
-        const grouped = Object.values(VISA_TYPES).reduce((acc, visa) => {
-            if (!acc[visa.category]) acc[visa.category] = [];
-            acc[visa.category].push(visa);
-            return acc;
-        }, {} as Record<string, typeof VISA_TYPES[string][]>);
+    const VisaDropdown = () => {
+        const sortedVisas = Object.values(VISA_TYPES).sort((a, b) => a.code.localeCompare(b.code));
+        const categories = [...new Set(sortedVisas.map(v => v.category))];
 
         const categoryMap: Record<string, string> = {
             'Professional': t('visaCalc.categories.professional'),
@@ -407,64 +396,116 @@ export default function VisaCalculatorScreen() {
             'Other': t('visaCalc.categories.other')
         };
 
-        const categoryOrder = ['Professional', 'Resident', 'Education', 'Overseas', 'ShortTerm', 'Diplomatic', 'Other'];
-        const sortedGroups = Object.entries(grouped).sort(([a], [b]) => {
-            const idxA = categoryOrder.indexOf(a);
-            const idxB = categoryOrder.indexOf(b);
-            return (idxA > -1 ? idxA : 99) - (idxB > -1 ? idxB : 99);
-        });
-
         return (
-            <View style={{ gap: 24 }}>
-                {sortedGroups.map(([category, list]) => (
-                    <Section key={category} title={categoryMap[category] || category}>
-                        <View style={{ gap: 12 }}>
-                            {list.map(visa => (
-                                <View key={visa.code} style={styles.visaCard}>
-                                    <View style={styles.visaHeader}>
-                                        <View style={styles.visaBadge}>
-                                            <Text style={styles.visaBadgeText}>{visa.code}</Text>
-                                        </View>
-                                        <Text style={styles.visaName}>{visa.name}</Text>
-                                    </View>
-                                    <Text style={styles.visaDesc}>{visa.description}</Text>
+            <View style={styles.dropdownWrapper}>
+                <TouchableOpacity
+                    style={styles.dropdownButton}
+                    onPress={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                    <View style={styles.dropdownButtonContent}>
+                        <View style={styles.selectedVisaBadge}>
+                            <Text style={styles.selectedVisaBadgeText}>{selectedVisaCode}</Text>
+                        </View>
+                        <Text style={styles.selectedVisaName} numberOfLines={1}>
+                            {VISA_TYPES[selectedVisaCode]?.name || selectedVisaCode}
+                        </Text>
+                        <MaterialIcons
+                            name={isDropdownOpen ? "expand-less" : "expand-more"}
+                            size={24}
+                            color={COLORS.primary[600]}
+                        />
+                    </View>
+                </TouchableOpacity>
 
-                                    {visa.salaryRequirement && (
-                                        <View style={styles.visaMetaRow}>
-                                            <MaterialIcons name="attach-money" size={14} color="#666" />
-                                            <Text style={styles.visaMetaText}>{t('visaCalc.common.minSalary', { salary: visa.salaryRequirement })}</Text>
-                                        </View>
-                                    )}
-                                    {visa.maxStay && (
-                                        <View style={styles.visaMetaRow}>
-                                            <MaterialIcons name="access-time" size={14} color="#666" />
-                                            <Text style={styles.visaMetaText}>{visa.maxStay}</Text>
-                                        </View>
-                                    )}
-                                    {visa.allowedActivities && (
-                                        <View style={styles.visaMetaRow}>
-                                            <MaterialIcons name="check-circle-outline" size={14} color="#666" />
-                                            <Text style={styles.visaMetaText}>{visa.allowedActivities.join(', ')}</Text>
-                                        </View>
-                                    )}
-                                    {visa.notes && visa.notes.length > 0 && (
-                                        <View style={styles.visaNotesContainer}>
-                                            {visa.notes.map((note, idx) => (
-                                                <View key={idx} style={styles.visaNoteRow}>
-                                                    <View style={styles.visaNoteDot} />
-                                                    <Text style={styles.visaNoteText}>{note}</Text>
-                                                </View>
-                                            ))}
-                                        </View>
-                                    )}
+                {isDropdownOpen && (
+                    <View style={styles.dropdownMenu}>
+                        <ScrollView style={{ maxHeight: 300 }} nestedScrollEnabled={true}>
+                            {categories.map(cat => (
+                                <View key={cat}>
+                                    <View style={styles.dropdownCategoryHeader}>
+                                        <Text style={styles.dropdownCategoryText}>{categoryMap[cat] || cat}</Text>
+                                    </View>
+                                    {sortedVisas.filter(v => v.category === cat).map(visa => (
+                                        <TouchableOpacity
+                                            key={visa.code}
+                                            style={[
+                                                styles.dropdownItem,
+                                                selectedVisaCode === visa.code && styles.dropdownItemActive
+                                            ]}
+                                            onPress={() => {
+                                                setSelectedVisaCode(visa.code);
+                                                setIsDropdownOpen(false);
+                                            }}
+                                        >
+                                            <View style={styles.visaBadgeSmall}>
+                                                <Text style={styles.visaBadgeTextSmall}>{visa.code}</Text>
+                                            </View>
+                                            <Text style={[
+                                                styles.dropdownItemText,
+                                                selectedVisaCode === visa.code && styles.dropdownItemTextActive
+                                            ]}>
+                                                {visa.name}
+                                            </Text>
+                                            {selectedVisaCode === visa.code && (
+                                                <MaterialIcons name="check" size={18} color={COLORS.primary[500]} />
+                                            )}
+                                        </TouchableOpacity>
+                                    ))}
                                 </View>
                             ))}
-                        </View>
-                    </Section>
-                ))}
+                        </ScrollView>
+                    </View>
+                )}
             </View>
         );
     };
+
+    const VisaInfoSection = ({ visa }: { visa: typeof VISA_TYPES[string] }) => (
+        <View style={styles.infoCard}>
+            <View style={styles.infoCardHeader}>
+                <View style={styles.infoBadgeLarge}>
+                    <Text style={styles.infoBadgeTextLarge}>{visa.code}</Text>
+                </View>
+                <Text style={styles.infoTitle}>{visa.name}</Text>
+            </View>
+
+            <Text style={styles.infoHighlight}>{visa.description}</Text>
+
+            <View style={styles.infoGrid}>
+                {visa.maxStay && (
+                    <View style={styles.infoGridItem}>
+                        <Text style={styles.infoGridLabel}>{t('visaCalc.common.stayDuration')}</Text>
+                        <Text style={styles.infoGridValue}>{visa.maxStay}</Text>
+                    </View>
+                )}
+                {visa.salaryRequirement && (
+                    <View style={styles.infoGridItem}>
+                        <Text style={styles.infoGridLabel}>{t('visaCalc.common.requirements')}</Text>
+                        <Text style={styles.infoGridValue}>{visa.salaryRequirement}</Text>
+                    </View>
+                )}
+            </View>
+
+            {visa.allowedActivities && visa.allowedActivities.length > 0 && (
+                <View style={styles.infoSubSection}>
+                    <Text style={styles.infoSubTitle}>{t('visaCalc.common.allowedActivities')}</Text>
+                    <Text style={styles.infoSubText}>{visa.allowedActivities.join(', ')}</Text>
+                </View>
+            )}
+
+            {visa.notes && visa.notes.length > 0 && (
+                <View style={styles.infoSubSection}>
+                    <Text style={styles.infoSubTitle}>{t('visaCalc.common.notes')}</Text>
+                    {visa.notes.map((note, idx) => (
+                        <View key={idx} style={styles.infoNoteRow}>
+                            <View style={styles.infoNoteDot} />
+                            <Text style={styles.infoNoteText}>{note}</Text>
+                        </View>
+                    ))}
+                </View>
+            )}
+        </View>
+    );
 
     const LegalDisclaimer = () => (
         <NoticeCard
@@ -480,19 +521,9 @@ export default function VisaCalculatorScreen() {
         <View style={styles.container}>
             <ScreenHeader title={t('visaCalc.title')} onBack={() => router.back()} />
 
-            {/* Tabs */}
+            {/* Top Dropdown Selection */}
             <View style={styles.tabContainer}>
-                <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.tabScrollContent}
-                >
-                    <TabButton type="E-7-4" label={t('visaCalc.tabs.e74')} />
-                    <TabButton type="F-2-7" label={t('visaCalc.tabs.f27')} />
-                    <TabButton type="D-10" label={t('visaCalc.tabs.d10')} />
-                    <TabButton type="F-5" label={t('visaCalc.tabs.f5')} />
-                    <TabButton type="ALL" label={t('visaCalc.tabs.all')} />
-                </ScrollView>
+                <VisaDropdown />
             </View>
 
             <View style={{ padding: SPACING.md, paddingBottom: 0 }}>
@@ -502,41 +533,44 @@ export default function VisaCalculatorScreen() {
             </View>
 
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                {activeTab === 'E-7-4' && <Section title={t('visaCalc.e74.title')}>{renderE74Inputs()}</Section>}
-                {activeTab === 'E-7-4' && <LegalDisclaimer />}
+                {VISA_TYPES[selectedVisaCode] && <VisaInfoSection visa={VISA_TYPES[selectedVisaCode]} />}
 
-                {activeTab === 'F-2-7' && <Section title={t('visaCalc.f27.title')}>{renderF27Inputs()}</Section>}
-                {activeTab === 'F-2-7' && <LegalDisclaimer />}
+                {selectedVisaCode === 'E-7-4' && renderE74Inputs()}
+                {selectedVisaCode === 'E-7-4' && <LegalDisclaimer />}
 
-                {activeTab === 'D-10' && <Section title={t('visaCalc.d10.title')}>{renderD10Inputs()}</Section>}
-                {activeTab === 'D-10' && <LegalDisclaimer />}
+                {selectedVisaCode === 'F-2-7' && renderF27Inputs()}
+                {selectedVisaCode === 'F-2-7' && <LegalDisclaimer />}
 
-                {activeTab === 'F-5' && renderF5Inputs()}
-                {activeTab === 'F-5' && <LegalDisclaimer />}
+                {selectedVisaCode === 'D-10' && renderD10Inputs()}
+                {selectedVisaCode === 'D-10' && <LegalDisclaimer />}
 
-                {activeTab === 'ALL' && renderAllVisas()}
+                {selectedVisaCode === 'F-5' && renderF5Inputs()}
+                {selectedVisaCode === 'F-5' && <LegalDisclaimer />}
+
+                {!['E-7-4', 'F-2-7', 'D-10', 'F-5'].includes(selectedVisaCode) && <LegalDisclaimer />}
             </ScrollView>
 
-            {/* Sticky Footer Result */}
-            <View style={[styles.footer, result?.pass ? styles.footerPass : styles.footerFail]}>
-                <View>
-                    <Text style={styles.footerLabel}>{t('visaCalc.common.totalScore')}</Text>
-                    <Text style={styles.footerScore}>{result?.score}{t('visaCalc.common.points')}</Text>
+            {/* Sticky Footer Result - Only show for points-based visas */}
+            {['E-7-4', 'F-2-7', 'D-10', 'F-5'].includes(selectedVisaCode) && (
+                <View style={[styles.footer, result?.pass ? styles.footerPass : styles.footerFail]}>
+                    <View>
+                        <Text style={styles.footerLabel}>{t('visaCalc.common.totalScore')}</Text>
+                        <Text style={styles.footerScore}>{result?.score}{t('visaCalc.common.points')}</Text>
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'flex-end', marginLeft: 16 }}>
+                        <Text
+                            style={[styles.footerStatus, result?.pass ? { color: COLORS.primary[600] } : { color: COLORS.error.main }]}
+                            numberOfLines={1}
+                            adjustsFontSizeToFit
+                        >
+                            {result?.pass ? `PASS (${t('visaCalc.f5.eligible')})` : `FAIL (${t('visaCalc.f5.ineligible')})`}
+                        </Text>
+                        <Text style={styles.footerDetail}>
+                            {selectedVisaCode === 'F-2-7' && result?.details?.validYears ? `${result.details.validYears}${t('visaCalc.common.years')} valid` : result?.message}
+                        </Text>
+                    </View>
                 </View>
-                <View style={{ flex: 1, alignItems: 'flex-end', marginLeft: 16 }}>
-                    <Text
-                        style={[styles.footerStatus, result?.pass ? { color: COLORS.primary[600] } : { color: COLORS.error.main }]}
-                        numberOfLines={1}
-                        adjustsFontSizeToFit
-                    >
-                        {result?.pass ? `PASS (${t('visaCalc.f5.eligible')})` : `FAIL (${t('visaCalc.f5.ineligible')})`}
-                    </Text>
-                    {/* Small detail text */}
-                    <Text style={styles.footerDetail}>
-                        {activeTab === 'F-2-7' && result?.details?.validYears ? `${result.details.validYears}${t('visaCalc.common.years')} valid` : result?.message}
-                    </Text>
-                </View>
-            </View>
+            )}
         </View>
     );
 }
@@ -551,31 +585,199 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderBottomWidth: 1,
         borderBottomColor: '#eee',
+        zIndex: 100, // For dropdown overlap
     },
-    tabScrollContent: {
+    dropdownWrapper: {
+        padding: SPACING.md,
+        position: 'relative',
+    },
+    dropdownButton: {
+        backgroundColor: '#f8f9fa',
+        borderWidth: 1.5,
+        borderColor: COLORS.primary[200],
+        borderRadius: 12,
         paddingHorizontal: SPACING.md,
+        paddingVertical: 12,
+    },
+    dropdownButtonContent: {
         flexDirection: 'row',
-    },
-    tabButton: {
-        paddingVertical: 14,
-        paddingHorizontal: 12,
         alignItems: 'center',
-        justifyContent: 'center',
-        borderBottomWidth: 3,
-        borderBottomColor: 'transparent',
-        marginRight: 12,
     },
-    tabButtonActive: {
-        borderBottomColor: COLORS.primary[500],
+    selectedVisaBadge: {
+        backgroundColor: COLORS.primary[500],
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 6,
+        marginRight: 10,
     },
-    tabText: {
+    selectedVisaBadgeText: {
+        color: '#fff',
+        fontWeight: 'bold',
         fontSize: 14,
+    },
+    selectedVisaName: {
+        flex: 1,
+        fontSize: 16,
         fontWeight: '600',
+        color: '#333',
+    },
+    dropdownMenu: {
+        position: 'absolute',
+        top: 65,
+        left: SPACING.md,
+        right: SPACING.md,
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        ...SHADOWS.md,
+        borderWidth: 1,
+        borderColor: '#eee',
+        zIndex: 1000,
+        overflow: 'hidden',
+    },
+    dropdownCategoryHeader: {
+        backgroundColor: '#f5f7fa',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+    },
+    dropdownCategoryText: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#777',
+        textTransform: 'uppercase',
+    },
+    dropdownItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f5f5f5',
+    },
+    dropdownItemActive: {
+        backgroundColor: COLORS.primary[50],
+    },
+    dropdownItemText: {
+        flex: 1,
+        fontSize: 15,
+        color: '#444',
+    },
+    dropdownItemTextActive: {
+        color: COLORS.primary[600],
+        fontWeight: 'bold',
+    },
+    visaBadgeSmall: {
+        backgroundColor: '#eee',
+        paddingHorizontal: 6,
+        paddingVertical: 2,
+        borderRadius: 4,
+        marginRight: 10,
+        width: 50,
+        alignItems: 'center',
+    },
+    visaBadgeTextSmall: {
+        fontSize: 11,
+        fontWeight: '700',
         color: '#666',
     },
-    tabTextActive: {
-        color: COLORS.primary[500],
+    infoCard: {
+        backgroundColor: '#fff',
+        borderRadius: 16,
+        padding: 20,
+        marginBottom: SPACING.md,
+        ...SHADOWS.md,
+        borderLeftWidth: 4,
+        borderLeftColor: COLORS.primary[500],
+    },
+    infoCardHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 12,
+    },
+    infoBadgeLarge: {
+        backgroundColor: COLORS.primary[100],
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 8,
+        marginRight: 12,
+    },
+    infoBadgeTextLarge: {
+        color: COLORS.primary[700],
         fontWeight: 'bold',
+        fontSize: 16,
+    },
+    infoTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#1a1a1a',
+        flex: 1,
+    },
+    infoHighlight: {
+        fontSize: 16,
+        color: '#444',
+        lineHeight: 24,
+        marginBottom: 16,
+        fontWeight: '500',
+    },
+    infoGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: 12,
+        marginBottom: 16,
+    },
+    infoGridItem: {
+        flex: 1,
+        minWidth: '45%',
+        backgroundColor: '#f8f9fa',
+        padding: 12,
+        borderRadius: 10,
+    },
+    infoGridLabel: {
+        fontSize: 12,
+        color: '#888',
+        marginBottom: 4,
+    },
+    infoGridValue: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#333',
+    },
+    infoSubSection: {
+        marginTop: 12,
+        paddingTop: 12,
+        borderTopWidth: 1,
+        borderTopColor: '#f0f0f0',
+    },
+    infoSubTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: COLORS.primary[600],
+        marginBottom: 6,
+    },
+    infoSubText: {
+        fontSize: 14,
+        color: '#555',
+        lineHeight: 20,
+    },
+    infoNoteRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 8,
+        marginBottom: 4,
+    },
+    infoNoteDot: {
+        width: 4,
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: COLORS.primary[400],
+        marginTop: 8,
+    },
+    infoNoteText: {
+        fontSize: 13,
+        color: '#666',
+        flex: 1,
+        lineHeight: 18,
     },
     scrollContent: {
         padding: SPACING.md,

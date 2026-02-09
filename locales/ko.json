@@ -313,7 +313,13 @@
       "minSalary": "최소 연봉: {{salary}}",
       "totalScore": "총점",
       "goal": "목표: {{threshold}}{{unit}} (현재 {{value}})",
-      "gniPercent": "GNI %"
+      "gniPercent": "GNI %",
+      "description": "비자 설명",
+      "requirements": "자격 요건",
+      "stayDuration": "체류 기간",
+      "allowedActivities": "허용 활동",
+      "restrictedActivities": "제한 활동",
+      "notes": "참고 사항"
     },
     "e74": {
       "title": "E-7-4 점수 계산기",
