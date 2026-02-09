@@ -33,9 +33,12 @@ export const LanguageSwitcher = () => {
                 onPress={() => setModalVisible(true)}
                 activeOpacity={0.7}
             >
-                <Text style={styles.languageIcon}>{currentLanguage.icon}</Text>
-                <Text style={styles.languageCode}>{currentLanguage.code.toUpperCase()}</Text>
-                <MaterialIcons name="expand-more" size={16} color={COLORS.text.secondary} />
+                <View style={styles.buttonContent}>
+                    <MaterialIcons name="language" size={18} color={COLORS.primary[600]} />
+                    <Text style={styles.languageCode}>{currentLanguage.code.toUpperCase()}</Text>
+                    <Text style={styles.languageIcon}>{currentLanguage.icon}</Text>
+                    <MaterialIcons name="expand-more" size={16} color={COLORS.primary[600]} />
+                </View>
             </TouchableOpacity>
 
             {/* Language Selection Modal */}
@@ -101,24 +104,27 @@ export const LanguageSwitcher = () => {
 const styles = StyleSheet.create({
     // Current Language Button (Top-right corner)
     languageButton: {
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderWidth: 1.5,
+        borderColor: COLORS.primary[500],
+        borderRadius: RADIUS.full,
+        paddingHorizontal: SPACING.md,
+        paddingVertical: 6,
+        ...SHADOWS.md,
+    },
+    buttonContent: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: COLORS.background,
-        borderWidth: 1,
-        borderColor: COLORS.border,
-        borderRadius: RADIUS.full,
-        paddingHorizontal: SPACING.sm,
-        paddingVertical: 4,
-        gap: 4,
-        ...SHADOWS.sm,
+        gap: 6,
     },
     languageIcon: {
-        fontSize: 16,
+        fontSize: 14,
+        marginLeft: 2,
     },
     languageCode: {
-        fontSize: 12,
-        fontWeight: '600',
-        color: COLORS.text.primary,
+        fontSize: 14,
+        fontWeight: '700',
+        color: COLORS.primary[700],
     },
 
     // Modal Overlay

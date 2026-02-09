@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { useEffect, useRef } from 'react';
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
+import { auth } from '../utils/firebase';
 
 export default function SplashScreen() {
     const router = useRouter();
@@ -25,29 +26,39 @@ export default function SplashScreen() {
             }),
         ]).start();
 
-        // Navigate based on onboarding status
-        const checkOnboarding = async () => {
+        // Navigate based on auth status
+        const checkNavigation = async () => {
             try {
-                // await AsyncStorage.clear(); // Uncomment to reset for testing
+                // Wait for auth to initialize if it hasn't already
+                // Since this is a splash screen, we can afford a small delay or use onAuthStateChanged
+                const user = auth.currentUser;
                 const hasLaunched = await AsyncStorage.getItem('has_launched');
 
-                // Timer validation (min 2.5s)
                 timer = setTimeout(() => {
-                    if (hasLaunched === 'true') {
-                        router.replace('/(tabs)');
+                    if (!user) {
+                        // Not logged in -> go to Welcome (if first time) or Login
+                        if (hasLaunched === 'true') {
+                            router.replace('/login');
+                        } else {
+                            router.replace('/welcome');
+                        }
+                    } else if (!user.emailVerified) {
+                        // Logged in but not verified -> go to Verification status in Login screen
+                        router.replace('/login');
                     } else {
-                        router.replace('/welcome');
+                        // Logged in and verified -> Go home
+                        router.replace('/(tabs)');
                     }
                 }, 2500);
 
                 return () => clearTimeout(timer);
             } catch (error) {
-                console.error('Onboarding check failed:', error);
-                router.replace('/welcome'); // Fallback
+                console.error('Navigation check failed:', error);
+                router.replace('/welcome');
             }
         };
 
-        checkOnboarding();
+        checkNavigation();
 
         return () => clearTimeout(timer);
     }, []);
