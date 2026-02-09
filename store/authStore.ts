@@ -13,7 +13,7 @@ interface AuthState {
     isLoading: boolean;
     error: string | null;
     signIn: (email: string, pass: string) => Promise<void>;
-    signUp: (email: string, pass: string) => Promise<void>;
+    signUp: (email: string, pass: string) => Promise<User | null>;
     logout: () => Promise<void>;
     checkUser: () => void;
 }
@@ -27,7 +27,8 @@ export const useAuthStore = create<AuthState>((set) => ({
         set({ isLoading: true, error: null });
         try {
             await signInWithEmailAndPassword(auth, email, pass);
-            // State update is handled by onAuthStateChanged
+            // Explicitly set loading to false to ensure UI unblocks immediately
+            set({ isLoading: false });
         } catch (e: any) {
             set({ error: e.message, isLoading: false });
             throw e;
@@ -37,7 +38,8 @@ export const useAuthStore = create<AuthState>((set) => ({
     signUp: async (email, pass) => {
         set({ isLoading: true, error: null });
         try {
-            await createUserWithEmailAndPassword(auth, email, pass);
+            const credential = await createUserWithEmailAndPassword(auth, email, pass);
+            return credential.user;
             // State update is handled by onAuthStateChanged
         } catch (e: any) {
             set({ error: e.message, isLoading: false });

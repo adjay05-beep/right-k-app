@@ -8,6 +8,7 @@ export function HelloWave() {
         lineHeight: 32,
         marginTop: -6,
         animationName: {
+          // @ts-ignore
           '50%': { transform: [{ rotate: '25deg' }] },
         },
         animationIterationCount: 4,

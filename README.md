@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# Right K App 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the **Right K** application, an Expo-powered mobile app designed to help users navigate Korean visa requirements and life in Korea.
 
-## Get started
+## 🏗️ Project Overview
 
-1. Install dependencies
+- **Framework**: [Expo](https://expo.dev) 52 (SDK 52)
+- **Styling**: [NativeWind](https://www.nativewind.dev) (v4)
+- **Language**: TypeScript
+- **Backend**: Firebase Auth/Firestore & OpenAI GPT-4o
 
+## 🚀 Core Features
+
+- **Visa Calculator**: Logic for calculating points and requirements for various Korean visas.
+- **AI Chat**: GPT-4o powered chat for immigration and life-in-Korea queries.
+- **Translation Services**: AI-powered translations with Firestore caching for performance.
+- **Document Management**: Assistance with visa-related documentation.
+
+## 🔑 Environment Setup
+
+1. Create a `.env` file in the root directory.
+2. Add your OpenAI API key:
+   ```env
+   EXPO_PUBLIC_OPENAI_API_KEY=your_openai_key_here
+   ```
+3. Configuration for Supabase and Firebase can be found in `utils/supabase.ts` and `utils/firebase.ts`.
+
+## 📦 Getting Started
+
+1. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. **Start the app**:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## 📂 Logic & Architecture Reference
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+For a detailed breakdown of the application logic, routing, and state management, please refer to the internal documentation:
+- **Project Logic & Flow**: See the [ProjectOverview.md](PROJECT_OVERVIEW.md) (or refer to the AI-generated documentation artifact).
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Developed with ❤️ for the Right K team.

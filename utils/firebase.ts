@@ -1,9 +1,10 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Firebase project configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBjOOK-UrgvrrOCuDpTHHgQEJBOSrF69fw",
+    apiKey: "AIzaSyD7hQiL2eM-CMSJuSaqzsjCAFHsG8y4rFw",
     authDomain: "right-k.firebaseapp.com",
     projectId: "right-k",
     storageBucket: "right-k.firebasestorage.app",
@@ -15,8 +16,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Initialize Firebase Authentication and get a reference to the service
+// Initialize Firebase Authentication
 const auth = getAuth(app);
 
-export { app, auth };
+// Initialize Cloud Firestore
+const db = getFirestore(app);
+
+export { app, auth, db };
 

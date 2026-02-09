@@ -1,7 +1,9 @@
 import { Tabs } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
 export default function TabLayout() {
+  const { t } = useTranslation();
   return (
     <Tabs
       screenOptions={{
@@ -15,9 +17,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: t('tabs.home'),
           tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🏠</Text>, // 아이콘 대체
-          tabBarLabel: '홈',
+          tabBarLabel: t('tabs.home'),
         }}
       />
 
@@ -25,9 +27,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'My',
+          title: t('tabs.my'),
           tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>👤</Text>,
-          tabBarLabel: '내 정보',
+          tabBarLabel: t('tabs.my'),
         }}
       />
     </Tabs>

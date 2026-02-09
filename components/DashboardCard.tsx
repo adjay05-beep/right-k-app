@@ -1,12 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { styled } from 'nativewind';
-import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-
-const StyledTouchableOpacity = styled(TouchableOpacity);
-const StyledView = styled(View);
-const StyledText = styled(Text);
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface DashboardCardProps {
     title: string;
@@ -16,16 +10,50 @@ interface DashboardCardProps {
     color?: string;
 }
 
-export default function DashboardCard({ title, subtitle, iconName, href, color = "bg-white" }: DashboardCardProps) {
+export default function DashboardCard({ title, subtitle, iconName, href }: DashboardCardProps) {
     return (
-        <Link href={href} asChild>
-            <StyledTouchableOpacity className={`p-4 rounded-3xl shadow-sm mb-4 ${color} w-[48%] active:opacity-80`}>
-                <StyledView className="bg-blue-50 w-12 h-12 rounded-2xl items-center justify-center mb-3">
+        <Link href={href as any} asChild>
+            <TouchableOpacity style={styles.card} activeOpacity={0.8}>
+                <View style={styles.iconBox}>
                     <MaterialIcons name={iconName} size={24} color="#00264B" />
-                </StyledView>
-                <StyledText className="text-lg font-bold text-gray-900 mb-1">{title}</StyledText>
-                {subtitle && <StyledText className="text-xs text-gray-500">{subtitle}</StyledText>}
-            </StyledTouchableOpacity>
+                </View>
+                <Text style={styles.title}>{title}</Text>
+                {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+            </TouchableOpacity>
         </Link>
     );
 }
+
+const styles = StyleSheet.create({
+    card: {
+        padding: 16,
+        borderRadius: 24,
+        backgroundColor: '#ffffff',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.05,
+        shadowRadius: 2,
+        elevation: 1,
+        marginBottom: 16,
+        width: '48%',
+    },
+    iconBox: {
+        backgroundColor: '#eff6ff',
+        width: 48,
+        height: 48,
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12,
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#111827',
+        marginBottom: 4,
+    },
+    subtitle: {
+        fontSize: 12,
+        color: '#6b7280',
+    },
+});

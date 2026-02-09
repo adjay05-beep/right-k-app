@@ -1,18 +1,56 @@
 import { NON_ELIGIBLE_VISAS, TAX_RATES, TaxYear } from '../constants/taxRates';
 
+// Countries eligible for Lump-sum Refund (E-9/E-7 typical) based on reciprocity
+// This is a simplified list for the MVP.
+export const ELIGIBLE_FOR_REFUND = [
+  'PH', // Philippines
+  'TH', // Thailand
+  'ID', // Indonesia
+  'LK', // Sri Lanka
+  'VN', // Vietnam
+  'MN', // Mongolia
+  'UZ', // Uzbekistan
+  'KH', // Cambodia
+  'NP', // Nepal (Often subject to specific conditions, but including for demo as 'eligible' or we can exclude if user wants strict)
+  'MM', // Myanmar
+  'BD', // Bangladesh
+  'PK', // Pakistan
+  'CN', // China (Conditions apply, but often eligible for E-9)
+];
+
 const zeroResult = (gross: number) => ({
   netPay: gross,
   totalDeduction: 0,
   details: { pension: 0, health: 0, care: 0, employment: 0, tax: 0, localTax: 0 }
 });
 
+export type PensionResult = {
+  isEligible: boolean;
+  totalAmount: number;
+  monthlyPremium: number;
+};
+
 /**
- * Calculates the National Pension amount.
+ * Calculates the National Pension amount and refund eligibility.
  * Applies the monthly income cap and floor.
+ * Formula: (Income * 9%) * Months
  */
-export const calculatePension = (visaType: string, monthlyIncome: number, months: number, year: TaxYear = '2024'): number => {
+export const calculatePension = (
+  visaType: string,
+  monthlyIncome: number,
+  months: number,
+  nationality: string, // ISO code e.g., 'PH'
+  year: TaxYear = '2024'
+): PensionResult => {
+  // 1. Check Visa Eligibility (E-9 is generally eligible to pay, but refund depends on country)
   if (NON_ELIGIBLE_VISAS.includes(visaType)) {
-    return 0;
+    return { isEligible: false, totalAmount: 0, monthlyPremium: 0 };
+  }
+
+  // 2. Check Nationality Eligibility for Lump-sum Refund
+  // If not in the list, they might still pay pension but won't get the lump-sum refund upon departure.
+  if (!ELIGIBLE_FOR_REFUND.includes(nationality)) {
+    return { isEligible: false, totalAmount: 0, monthlyPremium: 0 };
   }
 
   const { pension } = TAX_RATES[year];
@@ -22,9 +60,13 @@ export const calculatePension = (visaType: string, monthlyIncome: number, months
   if (incomeBase < pension.minIncome) incomeBase = pension.minIncome;
   if (incomeBase > pension.maxIncome) incomeBase = pension.maxIncome;
 
-  // 국민연금: 기준소득월액 * 9% (총액)
+  // 국민연금: 기준소득월액 * 9% (총액: 사업장 4.5% + 본인 4.5% = 9% 적립됨)
+  // The refund is the TOTAL amount paid (9%), not just the employee share.
+  // Although technically it includes interest, we simulate the principal here.
   const monthlyPremium = Math.floor(incomeBase * pension.rate);
-  return monthlyPremium * months;
+  const totalAmount = monthlyPremium * months;
+
+  return { isEligible: true, totalAmount, monthlyPremium };
 };
 
 /**
