@@ -212,7 +212,10 @@
     "alreadyHaveAccount": "이미 계정이 있으신가요? 로그인"
   },
   "visaStatusCard": {
-    "title": "모달 화면입니다",
+    "title": "비자 상태",
+    "noVisa": "비자 정보 없음",
+    "expiresOn": "만료일: {{date}}",
+    "noExpiry": "만료일 정보 없음",
     "goHome": "홈 화면으로 이동"
   },
   "profile": {
