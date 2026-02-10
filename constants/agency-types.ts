@@ -1,9 +1,8 @@
 export type AgencyCategory =
-    | 'immigration'      // 출입국·외국인청/사무소
-    | 'community'        // 주민센터
-    | 'global'           // 글로벌센터
-    | 'multicultural'    // 가족센터 (다문화가족지원센터)
-    | 'worker';          // 외국인노동자지원센터
+    | 'immigration'      // 출입국·외국인청/사무소 (Searchable)
+    | 'community'        // 주민센터 (Searchable)
+    | 'plus'             // 다문화이주민플러스센터 (Static List)
+    | 'support';         // 외국인주민지원센터/글로벌센터 (Static List)
 
 export type AgencyInfo = {
     name: string;
@@ -13,44 +12,36 @@ export type AgencyInfo = {
     lng: number;
     category: AgencyCategory;
     services: string[];
-    district: string; // 구 name for better matching
-    dong: string; // 동 name for better matching
+    district: string;
+    dong: string;
     nameKo?: string;
     addressKo?: string;
     districtKo?: string;
     dongKo?: string;
+    jurisdiction?: string[];
+    updatedAt?: string;
 };
 
 // Service tags by category for easy reference
 export const AGENCY_SERVICES: Record<AgencyCategory, string[]> = {
     immigration: [
-        'Foreign Registration & ARC',
-        'Visa Change & Extension',
-        'Residence Permit',
-        'Immigration Consultation'
+        'Foreign Registration',
+        'Visa Extension',
+        'Residence Permit'
     ],
     community: [
         'Residence Report',
         'Seal Certificate',
-        'Civil Complaints',
-        'Address Change'
+        'Civil Petitions'
     ],
-    global: [
-        'Multilingual Consultation',
-        'Employment Support',
+    plus: [
+        'One-Stop Service',
+        'Visa & Employment',
+        'Interpretation'
+    ],
+    support: [
+        'Daily Life Support',
         'Legal Counseling',
-        'Startup Support'
-    ],
-    multicultural: [
-        'Korean Language Education',
-        'Interpretation Service',
-        'Child Development Support',
-        'Employment Connection'
-    ],
-    worker: [
-        'Labor Consultation',
-        'Living Support',
-        'Legal Counseling',
-        'Emergency Assistance'
+        'Cultural Programs'
     ]
 };

@@ -1,5 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
+import { translateFullText } from './aiService';
 
 const GOOGLE_CLOUD_VISION_API_KEY = 'AIzaSyD7hQiL2eM-CMSJuSaqzsjCAFHsG8y4rFw'; // User provided key
 const VISION_API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${GOOGLE_CLOUD_VISION_API_KEY}`;
@@ -14,7 +15,8 @@ export type OCRResult = {
     amount?: string;
     dueDate?: string;
     paymentInfo?: string;
-    rawText?: string; // Added for debugging
+    rawText?: string;
+    translatedText?: string;
 };
 
 // Real OCR function for Mail
@@ -82,6 +84,14 @@ export const analyzeMailImage = async (imageUri: string): Promise<OCRResult> => 
         const fullText = textAnnotations[0].description;
         console.log("[Mail OCR] Detected Text:", fullText.substring(0, 100) + "...");
         const cleanText = fullText.replace(/\r\n/g, '\n');
+
+        // Translate Full Text
+        let translatedText = '';
+        try {
+            translatedText = await translateFullText(fullText, 'ko');
+        } catch (e) {
+            console.error("Translation Error:", e);
+        }
 
         // 3. Keyword Analysis
         // DANGER: Actionable bills, fines, warnings
@@ -184,7 +194,8 @@ export const analyzeMailImage = async (imageUri: string): Promise<OCRResult> => 
             title: extractedTitle,
             amount: extractedAmount,
             dueDate: extractedDate,
-            paymentInfo: extractedPaymentInfo
+            paymentInfo: extractedPaymentInfo,
+            translatedText: translatedText
         };
 
         if (detectedPaid.length > 0) {

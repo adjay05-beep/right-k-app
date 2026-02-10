@@ -33,7 +33,7 @@
     "ineligible_country": "Quốc tịch {{country}} không thuộc diện đủ điều kiện nhận thanh toán.",
     "procedures": "Lưu Ý Khi Đăng Ký",
     "disclaimer_title": "Điều Khoản Xác Nhận",
-    "disclaimer_text": "Các kết quả trên chỉ là ước lượng, khả năng và số tiền thanh toán thực tế có thể khác. Hãy xác nhận chính xác thông tin với cơ quan có thẩm quyền.",
+    "disclaimer_text": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results.",
     "disclaimer_contact": "Liên Hệ: Tập Đoàn Hưu Trí Quốc Gia 1355 (không mã vùng) / www.nps.or.kr",
     "countries": {
       "PH": "Philippines",
@@ -66,6 +66,13 @@
     "overseas_item_1": "Đơn yêu cầu hoàn tiền全额一次性 (cần công chứng)",
     "overseas_item_2": "Bản sao tài khoản ngân hàng vô danh quốc tế",
     "overseas_item_3": "Bản sao hộ chiếu và Giấy chứng nhận định cư quốc tế (người có hộ chiếu cư trú)"
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "location": "Location Terms",
+    "company_desc": "Visa management and lifestyle support for foreigners",
+    "customer_center": "Customer Center"
   },
   "login": {
     "welcome": "Chào Mừng",
@@ -101,7 +108,14 @@
     "authFailed": "Xác Thực Thất Bại",
     "ok": "Xác Nhận",
     "cancel": "Hủy",
-    "back": "Quay Lại"
+    "back": "Quay Lại",
+    "premiumRequired": "Yêu Cầu Gói Premium",
+    "upgradeToPremium": "Tính năng này chỉ dành cho thành viên Premium.",
+    "showOriginal": "Xem Bản Gốc",
+    "translate": "Dịch",
+    "translationFailed": "Dịch Thất Bại.",
+    "verifyNow": "Verify Now",
+    "info": "Info"
   },
   "dashboard": {
     "hello": "Xin Chào, {{name}}",
@@ -142,11 +156,11 @@
   "aiChat": {
     "title": "AI Consultation (Beta)",
     "subtitle": "Hỏi Bất Cứ Điều Gì",
-    "welcomeMessage": "Xin chào! Bạn có thắc mắc gì về cuộc sống ở Hàn Quốc hoặc visa?",
+    "welcomeMessage": "Hello! How can I help you today?\n\nPlease note that AI-generated responses may contain inaccuracies. For critical matters, always verify information with an expert or official institution.",
     "error": "Lỗi",
     "fetchError": "Không thể truy xuất phản hồi AI. Vui lòng thử lại sau.",
     "responseError": "Xin lỗi. Đã xảy ra lỗi nên không thể cung cấp câu trả lời.",
-    "disclaimer": "Câu trả lời từ AI có thể không chính xác, vui lòng xác nhận thông tin quan trọng qua kênh chính thức.",
+    "disclaimer": "The responses provided by this AI chatbot are for reference only and may not reflect real-time changes in laws or policies. For critical decisions regarding visa status or legal matters, please verify the facts with official authorities such as HiKorea or the competent Immigration Office.",
     "typing": "AI đang nhập...",
     "placeholder": "Nhập tin nhắn...",
     "systemPrompt": "Bạn là một trợ lý AI giúp người nước ngoài sống tại Hàn Quốc. Hãy trả lời chính xác và thân thiện về visa (đặc biệt là F-5, F-2), chính sách nhập cư, thông tin cuộc sống ở Hàn Quốc. Không phải tư vấn pháp lý và hãy hướng dẫn người dùng kiểm tra thông tin quan trọng qua Hi Korea hoặc chuyên gia. Luôn trả lời bằng ngôn ngữ này: "
@@ -189,7 +203,7 @@
     "visaMaxPoints": "Điểm Tối Đa: {{max}} Điểm",
     "scoreRangeHigh": "Khuyến nghị từ {{min}}~{{max}} Điểm Trở Lên",
     "scoreWarning": "Thấp (Có Khả Năng Yếu Dưới {{score}} Điểm)",
-    "calculationNote": "Kết quả tính toán này chỉ mang tính chất tham khảo, kết quả thực tế có thể khác tùy theo tình huống cá nhân. Hãy xác nhận chính thức."
+    "calculationNote": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results."
   },
   "welcome": {
     "title1": "Global Expat,",
@@ -258,7 +272,7 @@
     "personal": "Giấy Tờ Cá Nhân (Personal)",
     "company": "Giấy Tờ Công Ty (Company)",
     "legalDisclaimer": "Tuyên Bố Pháp Lý (Legal Disclaimer)",
-    "legalContent": "Right K cung cấp thông tin và không thực hiện dịch vụ đại diện tài liệu hoặc tư vấn pháp lý."
+    "legalContent": "The information provided by this service is for general guidance purposes only and does not constitute legal advice. For precise assessment of individual cases, please consult with a qualified professional (lawyer, administrative agent). Right K assumes no legal liability for any consequences arising from the use of this information."
   },
   "visaCalc": {
     "title": "Tính Điểm Visa",
@@ -348,13 +362,17 @@
     "visaType": "Loại Visa",
     "expiryDate": "Ngày Hết Hạn",
     "currentVisa": "Visa Hiện Tại",
-    "infoDesc": "Thông tin trên chỉ được lưu trữ an toàn trong ứng dụng và không được gửi ra ngoài. Có thể khác với thời gian cư trú thực tế, vui lòng kiểm tra thông tin chính xác tại Hi Korea.",
+    "infoDesc": "Your visa and personal information are securely encrypted and stored locally on your device; they are strictly not transmitted to or collected by external servers. As the displayed expiration date may differ from official records, please verify the exact details via HiKorea.",
     "scanComplete": "Quét Hoàn Tất",
     "scanSuccess": "Thông tin Thẻ Đăng Ký Người Nước Ngoài đã được cập nhật thành công.",
     "scanFailed": "Quét Thất Bại",
     "scanError": "Không phân tích được hình ảnh. Vui lòng thử lại.",
     "invalidDate": "Định dạng ngày tháng không hợp lệ (YYYY-MM-DD)",
-    "savedSuccess": "Đã Lưu."
+    "savedSuccess": "Đã Lưu.",
+    "minSalary": "Min. Annual Salary",
+    "maxStay": "Max Stay",
+    "tips": "Tips",
+    "koreaLifeGuide": "Korea Life Guide"
   },
   "tax": {
     "title": "Hướng Dẫn Quyết Toán Thuế",
@@ -377,5 +395,140 @@
     "doc_3": "Biên lai y tế",
     "doc_4": "Hợp đồng thuê nhà (nếu có)",
     "actionBtn": "Đi Đến HomeTax Ngay"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "Ngoại giao",
+      "description": "Nhà ngoại giao và gia đình"
+    },
+    "A-2": {
+      "name": "Công vụ",
+      "description": "Thực hiện nhiệm vụ chính phủ"
+    },
+    "A-3": {
+      "name": "Hiệp định",
+      "description": "Nhân sự theo hiệp định SOFA"
+    },
+    "B-1": {
+      "name": "Miễn thị thực",
+      "description": "Công dân quốc gia được miễn thị thực"
+    },
+    "B-2": {
+      "name": "Du lịch/Quá cảnh",
+      "description": "Tham quan hoặc quá cảnh"
+    },
+    "C-1": {
+      "name": "Phóng viên",
+      "description": "Hoạt động báo chí ngắn hạn"
+    },
+    "C-3": {
+      "name": "Thăm thân",
+      "description": "Du lịch, thăm gia đình, tham dự sự kiện"
+    },
+    "C-4": {
+      "name": "Làm việc ngắn hạn",
+      "description": "Hoạt động lợi nhuận ngắn hạn (giảng dạy, người mẫu, v.v.)"
+    },
+    "D-1": {
+      "name": "Văn hóa/Nghệ thuật",
+      "description": "Hoạt động học thuật hoặc nghệ thuật"
+    },
+    "D-2": {
+      "name": "Du học",
+      "description": "Chương trình bằng cấp chính quy (Cử nhân~Tiến sĩ)"
+    },
+    "D-4": {
+      "name": "Đào tạo tổng hợp",
+      "description": "Học tiếng, đào tạo kỹ thuật"
+    },
+    "D-7": {
+      "name": "Điều chuyển nội bộ",
+      "description": "Nhân viên công ty nước ngoài tại chi nhánh Hàn Quốc"
+    },
+    "D-8": {
+      "name": "Đầu tư doanh nghiệp",
+      "description": "Quản lý/điều hành doanh nghiệp đầu tư nước ngoài"
+    },
+    "D-9": {
+      "name": "Quản lý thương mại",
+      "description": "Quản lý kinh doanh thương mại quốc tế"
+    },
+    "D-10": {
+      "name": "Tìm việc",
+      "description": "Hoạt động tìm việc hoặc thực tập"
+    },
+    "E-7-1": {
+      "name": "Chuyên gia",
+      "description": "67 ngành nghề chuyên môn"
+    },
+    "E-7-2": {
+      "name": "Bán chuyên gia",
+      "description": "Dịch vụ và bán hàng (Miễn thuế, điều phối viên y tế, v.v.)"
+    },
+    "E-7-3": {
+      "name": "Lao động lành nghề",
+      "description": "Thợ hàn, bảo trì máy bay, v.v."
+    },
+    "E-7-4": {
+      "name": "Lao động kỹ năng cao",
+      "description": "Tuyển chọn theo hệ thống điểm từ E-9/H-2"
+    },
+    "E-9": {
+      "name": "Lao động phổ thông",
+      "description": "Sản xuất, nông nghiệp, chăn nuôi (EPS)"
+    },
+    "F-1-D": {
+      "name": "Du mục kỹ thuật số",
+      "description": "Làm việc từ xa cho công ty nước ngoài"
+    },
+    "F-2-7": {
+      "name": "Cư trú (Điểm)",
+      "description": "Cư trú dài hạn cho chuyên gia/du học sinh ưu tú"
+    },
+    "F-4": {
+      "name": "Việt kiều",
+      "description": "Người gốc Hàn và gia đình trực hệ"
+    }
+  },
+  "profile": {
+    "guest": "Khách",
+    "signInSignUp": "Đăng nhập / Đăng ký",
+    "visaLabel": "Visa: {{type}}",
+    "entryLabel": "Nhập cảnh: {{date}}",
+    "stayExpiration": "Hết hạn lưu trú",
+    "completed": "Hoàn thành {{percent}}%",
+    "settings": "Cài đặt",
+    "editProfile": "Chỉnh sửa hồ sơ",
+    "notifications": "Thông báo",
+    "language": "Ngôn ngữ",
+    "helpSupport": "Trợ giúp & Hỗ trợ",
+    "logOut": "Đăng xuất"
+  },
+  "community": {
+    "title": "Cộng Đồng Toàn Cầu",
+    "recentPosts": "Bài Viết Gần Đây",
+    "createPost": "Tạo Bài Viết",
+    "postTitle": "Tiêu đề",
+    "postContent": "Viết nội dung...",
+    "postButton": "Đăng",
+    "comments": "Bình luận {{count}}",
+    "noPosts": "Chưa có bài viết. Hãy là người đầu tiên chia sẻ!",
+    "selectCountry": "Chọn Quốc Gia",
+    "allCountries": "Tất Cả",
+    "membershipRequired": "Tính năng này sẽ dành cho thành viên Premium trong tương lai.",
+    "deletePost": "Xóa",
+    "reportPost": "Báo cáo",
+    "verificationRequired": "Yêu cầu xác minh",
+    "verificationRequiredDesc": "Chỉ người dùng đã xác minh mới có thể đăng bài. Vui lòng quét thẻ ID của bạn.",
+    "featureInProgress": "Tính năng này sắp ra mắt.",
+    "confirmDelete": "Bạn có chắc chắn muốn xóa bài viết này không?",
+    "deleteInProgress": "Tính năng xóa sắp ra mắt.",
+    "reportSubmitted": "Đã gửi báo cáo.",
+    "userBlocked": "Đã chặn người dùng."
+  },
+  "tabs": {
+    "home": "Trang Chủ",
+    "community": "Cộng Đồng",
+    "my": "Tôi"
   }
 }

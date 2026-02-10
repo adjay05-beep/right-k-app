@@ -7,11 +7,13 @@
     "back": "뒤로",
     "fillAllFields": "모든 항목을 입력해주세요",
     "enterName": "이름을 입력해주세요",
-    "authFailed": "인증 실패"
+    "authFailed": "인증 실패",
+    "verifyNow": "지금 인증하기",
+    "info": "정보"
   },
   "mail": {
-    "title": "우편물 분류기",
-    "subtitle": "AI 문서 분석",
+    "title": "우편물 번역",
+    "subtitle": "AI 문서 번역",
     "instruction": "문서를 촬영하여 내용을 분석하세요.",
     "btn_camera": "카메라",
     "btn_gallery": "갤러리",
@@ -22,7 +24,8 @@
     "safe_title": "단순 안내",
     "danger_desc": "세금, 과태료 등 중요 문서로 보입니다.",
     "safe_desc": "단순 안내문이나 홍보물로 보입니다. 걱정하지 마세요.",
-    "keyword_match": "감지된 키워드"
+    "keyword_match": "감지된 키워드",
+    "translation_title": "한국어 번역"
   },
   "pension": {
     "title": "국민연금 반환일시금",
@@ -45,7 +48,7 @@
     "ineligible_country": "{{country}} 국적은 원칙적으로 지급 대상이 아닙니다.",
     "procedures": "신청 시 주의사항",
     "disclaimer_title": "필수 확인 사항",
-    "disclaimer_text": "위 결과는 단순 예상치이며, 실제 지급 가능 여부와 금액은 다를 수 있습니다. 반드시 관할 기관을 통해 정확한 내용을 확인하세요.",
+    "disclaimer_text": "본 시뮬레이션 결과는 입력된 정보를 바탕으로 산출된 단순 예상치입니다. 실제 심사 결과나 지급 금액은 신청 시점의 관계 법령, 환율, 개인의 구체적인 체류 이력 등에 따라 달라질 수 있으며, 이에 대해 어떠한 법적 보증도 하지 않습니다.",
     "disclaimer_contact": "문의: 국민연금공단 1355 (국번없이) / www.nps.or.kr",
     "countries": {
       "PH": "필리핀",
@@ -87,6 +90,13 @@
     "overseas_item_1": "반환일시금 지급청구서 (공증 필요)",
     "overseas_item_2": "해외 본인 명의 통장 사본",
     "overseas_item_3": "여권 사본 및 국외이주신고서 (거주여권 소지자)"
+  },
+  "footer": {
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "location": "위치기반서비스 이용약관",
+    "company_desc": "비자 만료 관리 및 외국인 생활 지원 서비스",
+    "customer_center": "고객센터"
   },
   "login": {
     "welcome": "환영합니다",
@@ -155,11 +165,11 @@
   "aiChat": {
     "title": "AI 상담",
     "subtitle": "무엇이든 물어보세요",
-    "welcomeMessage": "안녕하세요! 한국 생활이나 비자에 대해 궁금한 점이 있으신가요?",
+    "welcomeMessage": "안녕하세요! 무엇을 도와드릴까요?\n\nAI 챗봇의 안내는 실제 법령이나 정책과 다를 수 있습니다. 중요한 결정 전에는 반드시 전문가 또는 관할 기관을 통해 사실관계를 확인해 주시기 바랍니다.",
     "error": "오류",
     "fetchError": "AI 응답을 가져오지 못했습니다. 잠시 후 다시 시도해주세요.",
     "responseError": "죄송합니다. 오류가 발생하여 답변을 드릴 수 없습니다.",
-    "disclaimer": "AI 답변은 정확하지 않을 수 있으니, 중요 정보는 반드시 공식 처를 통해 확인해주세요.",
+    "disclaimer": "AI 챗봇이 제공하는 답변은 참고용이며, 최신 법령이나 정책 변경 사항이 실시간으로 반영되지 않을 수 있습니다. 체류 자격이나 법적 분쟁과 관련된 중요한 의사결정 시에는 반드시 하이코리아(HiKorea) 또는 관할 출입국관리사무소 등 공식 기관을 통해 사실관계를 확인하시기 바랍니다.",
     "typing": "AI가 입력 중입니다...",
     "placeholder": "메시지를 입력하세요...",
     "systemPrompt": "당신은 한국에 거주하는 외국인을 돕는 AI 비서입니다. 비자(특히 F-5, F-2), 출입국 정책, 한국 생활 정보에 대해 정확하고 친절하게 답변해주세요. 법적인 조언이 아니며, 중요한 문제는 하이코리아나 전문가에게 확인하라고 안내해야 합니다. 항상 이 언어로 답변하세요: "
@@ -202,7 +212,7 @@
     "visaMaxPoints": "만점: {{max}}점",
     "scoreRangeHigh": "{{min}}~{{max}}점 이상 권장",
     "scoreWarning": "낮음 ({{score}}점 이하 취약 가능성)",
-    "calculationNote": "본 계산 결과는 참고용이며, 개인의 상황에 따라 실제 심사 결과와 다를 수 있으므로 정식 확인이 필요합니다."
+    "calculationNote": "본 시뮬레이션 결과는 입력된 정보를 바탕으로 산출된 단순 예상치입니다. 실제 심사 결과나 지급 금액은 신청 시점의 관계 법령, 환율, 개인의 구체적인 체류 이력 등에 따라 달라질 수 있으며, 이에 대해 어떠한 법적 보증도 하지 않습니다."
   },
   "welcome": {
     "title1": "Global Expat,",
@@ -236,6 +246,7 @@
   },
   "tabs": {
     "home": "홈",
+    "community": "커뮤니티",
     "my": "내 정보"
   },
   "news": {
@@ -291,7 +302,7 @@
     "personal": "본인 서류 (Personal)",
     "company": "회사 서류 (Company)",
     "legalDisclaimer": "법적 고지 (Legal Disclaimer)",
-    "legalContent": "Right K는 정보 제공을 목적으로 하며, 실제 서류 대행이나 법률 자문을 제공하지 않습니다."
+    "legalContent": "본 서비스에서 제공하는 정보는 일반적인 안내를 목적으로 작성되었으며, 법적 효력을 갖지 않습니다. 개별 사안에 대한 정확한 판단을 위해서는 반드시 관련 분야 전문가(변호사, 행정사)의 자문을 구하시기 바랍니다. Right K는 본 정보의 활용으로 인해 발생한 결과에 대해 어떠한 법적 책임도 지지 않습니다."
   },
   "visaCalc": {
     "title": "비자 점수 계산기",
@@ -390,7 +401,7 @@
     "visaType": "비자 종류",
     "expiryDate": "만료일",
     "currentVisa": "현재 비자",
-    "infoDesc": "위 정보는 앱 내 저장소에만 안전하게 보관되며, 외부로 전송되지 않습니다. 실제 체류 기간과 상이할 수 있으니 하이코리아에서 정확한 정보를 확인하세요.",
+    "infoDesc": "사용자가 입력한 비자 및 개인정보는 기기 내에 암호화되어 안전하게 저장되며, 어떠한 경우에도 외부 서버로 전송되거나 수집되지 않습니다. 표시되는 체류 기간 정보는 실제 데이터와 차이가 있을 수 있으므로, 정확한 내용은 하이코리아(HiKorea)에서 확인하시기 바랍니다.",
     "scanComplete": "스캔 완료 (Scan Complete)",
     "scanSuccess": "등록증 정보가 성공적으로 업데이트되었습니다.\n(Foreigner Registration Card updated)",
     "scanFailed": "스캔 실패 (Scan Failed)",
@@ -406,7 +417,33 @@
     "issueDate": "발급일자",
     "saveChanges": "변경사항 저장",
     "expiredWarningTitle": "비자 체류 기간 만료 경고",
-    "expiredWarningDesc": "현재 체류 기간이 만료되었습니다. 출입국관리법 위반으로 범칙금이 부과되거나 출국 조치될 수 있으니 즉시 1345 또는 전문가와 상담하세요."
+    "expiredWarningDesc": "현재 체류 기간이 만료되었습니다. 출입국관리법 위반으로 범칙금이 부과되거나 출국 조치될 수 있으니 즉시 1345 또는 전문가와 상담하세요.",
+    "permissionRequired": "카메라/갤러리 접근 권한이 필요합니다.",
+    "minSalary": "최소 연봉",
+    "maxStay": "최대 체류",
+    "tips": "팁"
+  },
+  "community": {
+    "title": "국가별 커뮤니티",
+    "recentPosts": "인기 게시글",
+    "createPost": "글쓰기",
+    "postTitle": "제목",
+    "postContent": "내용을 입력하세요",
+    "postButton": "등록",
+    "comments": "댓글 {{count}}",
+    "noPosts": "아직 게시글이 없습니다. 첫 글을 남겨보세요!",
+    "selectCountry": "국가 선택",
+    "allCountries": "전체",
+    "membershipRequired": "이 기능은 추후 유료 회원 전용으로 전환될 예정입니다.",
+    "deletePost": "삭제",
+    "reportPost": "신고",
+    "verificationRequired": "인증 필요",
+    "verificationRequiredDesc": "인증된 사용자만 글을 쓸 수 있습니다. 신분증을 스캔해주세요.",
+    "featureInProgress": "수정 기능 개발 중입니다.",
+    "confirmDelete": "정말로 이 게시글을 삭제하시겠습니까?",
+    "deleteInProgress": "삭제 기능 개발 중입니다.",
+    "reportSubmitted": "신고가 접수되었습니다.",
+    "userBlocked": "사용자가 차단되었습니다."
   },
   "tax": {
     "title": "연말정산 가이드",

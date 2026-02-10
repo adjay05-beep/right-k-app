@@ -9,8 +9,8 @@ interface HomeHeaderProps {
 }
 
 export const HomeHeader = ({ userName }: HomeHeaderProps) => {
-    const { t } = useTranslation();
-    const currentDate = new Date().toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long' });
+    const { t, i18n } = useTranslation();
+    const currentDate = new Date().toLocaleDateString(i18n.language, { month: 'long', day: 'numeric', weekday: 'long' });
 
     return (
         <View style={styles.container}>

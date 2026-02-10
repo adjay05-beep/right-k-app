@@ -33,7 +33,7 @@
     "ineligible_country": "{{country}} үндэстэн нь үндсэндээ төлбөрт хамрагдах боломжгүй байна.",
     "procedures": "Хүсэлт гаргахдаа анхаарах зүйлс",
     "disclaimer_title": "Шаардлагатай мэдээлэл",
-    "disclaimer_text": "Үүнээс дээрх үр дүн нь зөвхөн таамаглаж байгаа бөгөөд, бодит төлбөрт хадварлаах боломж болон дүн нь өөр байж болзошгүй. Албан ёсны эрх бүхий байгууллагаар дамжуулан үнэн зөв мэдээллийг баталгаажуулна уу.",
+    "disclaimer_text": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results.",
     "disclaimer_contact": "Холбоо барих: Үндэсний Тэтгэвэр Холбоо 1355 (утасны дугааргүй) / www.nps.or.kr",
     "countries": {
       "PH": "Филиппин",
@@ -66,6 +66,13 @@
     "overseas_item_1": "Буцаан төлөхийн тулд өргөдөл (нотлох шаардлагатай)",
     "overseas_item_2": "Гадаад дахь өөрийн нэрийн дансны хуулбар",
     "overseas_item_3": "Паспортын хуулбар болон гадаад шилжүүлэлтийн бүртгэлийн гэрчилгээ (оршин суугч паспорт баригч)"
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "location": "Location Terms",
+    "company_desc": "Visa management and lifestyle support for foreigners",
+    "customer_center": "Customer Center"
   },
   "login": {
     "welcome": "Тавтай морилно уу",
@@ -101,7 +108,14 @@
     "authFailed": "Баталгаажуулалт амжилтгүй боллоо",
     "ok": "Тийм",
     "cancel": "Цуцлах",
-    "back": "Буцах"
+    "back": "Буцах",
+    "premiumRequired": "Дээд зэрэглэлийн эрх шаардлагатай",
+    "upgradeToPremium": "Энэ функц нь зөвхөн дээд зэрэглэлийн хэрэглэгчдэд зориулагдсан.",
+    "showOriginal": "Эхийг харах",
+    "translate": "Орчуулах",
+    "translationFailed": "Орчуулга амжилтгүй.",
+    "verifyNow": "Verify Now",
+    "info": "Info"
   },
   "dashboard": {
     "hello": "Сайн байна уу, {{name}}",
@@ -142,11 +156,11 @@
   "aiChat": {
     "title": "AI Consultation",
     "subtitle": "Юу ч асууна уу",
-    "welcomeMessage": "Сайн уу! Солонгос дахь амьдрал эсвэл визийн талаар сонирхож байна уу?",
+    "welcomeMessage": "Hello! How can I help you today?\n\nPlease note that AI-generated responses may contain inaccuracies. For critical matters, always verify information with an expert or official institution.",
     "error": "Алдаа",
     "fetchError": "AI хариултыг авах боломжгүй байна. Түр хүлээгээд дахин оролдоно уу.",
     "responseError": "Уучлаарай. Алдаа гарч хариулт өгөх боломжгүй байна.",
-    "disclaimer": "AI хариултууд үнэн зөв биш байж болох тул чухал мэдээллийг албан ёсны газраас баталгаажуулна уу.",
+    "disclaimer": "The responses provided by this AI chatbot are for reference only and may not reflect real-time changes in laws or policies. For critical decisions regarding visa status or legal matters, please verify the facts with official authorities such as HiKorea or the competent Immigration Office.",
     "typing": "AI бичлэг хийж байна...",
     "placeholder": "Зурвас оруулна уу...",
     "systemPrompt": "Та Солонгос улсад амьдардаг гадаадад амьдардаг хүмүүст туслах AI зөвлөх байна. Виз (ялангуяа F-5, F-2), оршин суух бодлого, Солонгосын амьдралын тухай мэдээлэлд үнэн зөв, эелдэггээр хариулах хэрэгтэй. Энэ хууль эрх зүйн зөвлөгөө биш бөгөөд чухал асуудал гарвал Хайкореа эсвэл мэргэжилтэнд шалгуулахыг удирдана уу. Дандаа энэ хэлээр хариулаарай: "
@@ -189,7 +203,7 @@
     "visaMaxPoints": "Анхны оноо: {{max}} оноо",
     "scoreRangeHigh": "{{min}}~{{max}} оноогоор санал болгож байна",
     "scoreWarning": "Багатай ({{score}} онооноос доош итгэлгүй байж болно)",
-    "calculationNote": "Энэ оношилгооны үр дүн нь зөвхөн лавлагааны зориулалттай бөгөөд хувь хүний нөхцөл байдлаас хамааран жинхэнэ шалгалтын үр дүн өөр байж болзошгүй учир албан ёсны баталгаажаал хийх шаардлагатай."
+    "calculationNote": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results."
   },
   "welcome": {
     "title1": "Олон улсын иргэн,",
@@ -198,12 +212,6 @@
     "tryCalculator": "Миний Виз Оноог шалгаж үзэх",
     "tryCalculatorSubtitle": "Нэвтэрч оролгүйгээр яг шууд оношлоо",
     "alreadyHaveAccount": "Аль хэдийн хаягтай юу? Нэвтрэх"
-  },
-  "visaStatusCard": {
-    "title": "Миний Виз Статус",
-    "noVisa": "Виз байхгүй",
-    "expiresOn": "{{date}} дуусах хугацаа",
-    "noExpiry": "Дуусах хугацаа тогтоогдоогүй"
   },
   "news": {
     "searchPlaceholder": "Хайх үг оруулах (жишээ: Виз, F-5)",
@@ -265,7 +273,7 @@
     "personal": "Өөрийн Баримт Бичиг (Personal)",
     "company": "Компани Баримт Бичиг (Company)",
     "legalDisclaimer": "Хууль эрх зүйн мэдэгдэл (Legal Disclaimer)",
-    "legalContent": "Right K нь мэдээлэл өгөх зорилготой бөгөөд, бодит баримт бичиг үйлчилгээ эсвэл хууль эрх зүйн зөвлөгөө үзүүлэхгүй."
+    "legalContent": "The information provided by this service is for general guidance purposes only and does not constitute legal advice. For precise assessment of individual cases, please consult with a qualified professional (lawyer, administrative agent). Right K assumes no legal liability for any consequences arising from the use of this information."
   },
   "visaCalc": {
     "title": "Виз Онооны Оношилгоо",
@@ -355,13 +363,17 @@
     "visaType": "Виз Төрөл",
     "expiryDate": "Дуусах хугацаа",
     "currentVisa": "Одоогийн виз",
-    "infoDesc": "Дээрх мэдээлэл нь апп-ын хадгалалтанд л аюулгүй хадгалагдсан бөгөөд, албан ёсны оруулах орид оноос өөр байж болзошгүй тул Хайкореа-д үнэн зөв мэдээллийг баталгаажуулах хэрэгтэй.",
+    "infoDesc": "Your visa and personal information are securely encrypted and stored locally on your device; they are strictly not transmitted to or collected by external servers. As the displayed expiration date may differ from official records, please verify the exact details via HiKorea.",
     "scanComplete": "Шинжилгээ дууслаа (Scan Complete)",
     "scanSuccess": "Бүртгэлтийн мэдээлэл шинэчлэгдсэн байна.\n(Гадаад иргэний бүртгэлийн карт шинэчлэгдсэн)",
     "scanFailed": "Шинжилгээ амжилтгүй (Scan Failed)",
     "scanError": "Зурагийг шинжлэх боломжгүй. Дахин оролдоно уу.\n(Зургануудыг шинжилж чадахгүй байна)",
     "invalidDate": "Өдрийн формат нь зөв биш байна (YYYY-MM-DD)",
-    "savedSuccess": "Аврагдсан байна."
+    "savedSuccess": "Аврагдсан байна.",
+    "minSalary": "Min. Annual Salary",
+    "maxStay": "Max Stay",
+    "tips": "Tips",
+    "koreaLifeGuide": "Korea Life Guide"
   },
   "tax": {
     "title": "Жилийн Татварын Тайлан",
@@ -384,5 +396,140 @@
     "doc_3": "Эмнэлгийн төлбөрийн баримт",
     "doc_4": "Түрээсийн Гэрээ (хэрэв хэрэгтэй)",
     "actionBtn": "Үндэсний татвар Хөмtax Шууд Үйлчилгээ"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "Дипломат",
+      "description": "Дипломат болон түүний гэр бүл"
+    },
+    "A-2": {
+      "name": "Албан",
+      "description": "Засгийн газрын үүрэг гүйцэтгэх"
+    },
+    "A-3": {
+      "name": "Гэрээ",
+      "description": "SOFA гэрээний ажилтнууд"
+    },
+    "B-1": {
+      "name": "Визгүй",
+      "description": "Визгүй зорчих гэрээтэй улсууд"
+    },
+    "B-2": {
+      "name": "Аялал/Дамжин өнгөрөх",
+      "description": "Аялал жуулчлал эсвэл дамжин өнгөрөх"
+    },
+    "C-1": {
+      "name": "Түр Сурвалжлагч",
+      "description": "Богино хугацааны мэдээний үйл ажиллагаа"
+    },
+    "C-3": {
+      "name": "Богино хугацааны айлчлал",
+      "description": "Аялал, гэр бүлээ эргэх, арга хэмжээ"
+    },
+    "C-4": {
+      "name": "Богино хугацааны ажил эрхлэлт",
+      "description": "Богино хугацааны ашиг олох үйл ажиллагаа"
+    },
+    "D-1": {
+      "name": "Соёл/Урлаг",
+      "description": "Академик эсвэл урлагийн үйл ажиллагаа"
+    },
+    "D-2": {
+      "name": "Оюутан",
+      "description": "Албан ёсны зэрэг олгох хөтөлбөр (Бакалавр~Доктор)"
+    },
+    "D-4": {
+      "name": "Ерөнхий Сургалт",
+      "description": "Хэлний сургалт, техникийн сургалт"
+    },
+    "D-7": {
+      "name": "Дотоод шилжүүлэг",
+      "description": "Гадаадын компанийн Солонгос дахь салбарын ажилтан"
+    },
+    "D-8": {
+      "name": "Компанийн хөрөнгө оруулалт",
+      "description": "Гадаадын хөрөнгө оруулалттай компанийн удирдлага"
+    },
+    "D-9": {
+      "name": "Худалдааны удирдлага",
+      "description": "Олон улсын худалдааны менежмент"
+    },
+    "D-10": {
+      "name": "Ажил хайгч",
+      "description": "Ажил хайх эсвэл дадлага хийх"
+    },
+    "E-7-1": {
+      "name": "Мэргэжилтэн",
+      "description": "67 тусгай мэргэжил"
+    },
+    "E-7-2": {
+      "name": "Хагас мэргэжилтэн",
+      "description": "Үйлчилгээ ба худалдаа (Татваргүй дэлгүүр г.м.)"
+    },
+    "E-7-3": {
+      "name": "Ерөнхий ур чадвартай",
+      "description": "Гагнуур, нисэх онгоцны засвар г.м."
+    },
+    "E-7-4": {
+      "name": "Ур чадвартай ажилтан",
+      "description": "E-9/H-2 эзэмшигчдээс оноог үндэслэн сонгох"
+    },
+    "E-9": {
+      "name": "Мэргэжлийн бус ажилтан",
+      "description": "Үйлдвэрлэл, хөдөө аж ахуй г.м. (EPS)"
+    },
+    "F-1-D": {
+      "name": "Дижитал нүүдэлчин",
+      "description": "Гадаадын компанид зайнаас ажиллах"
+    },
+    "F-2-7": {
+      "name": "Оршин суугч (Оноо)",
+      "description": "Өндөр ур чадвартай мэргэжилтэн/оюутнуудад зориулсан урт хугацааны оршин суух"
+    },
+    "F-4": {
+      "name": "Хилийн чанад дахь Солонгос",
+      "description": "Хилийн чанад дахь Солонгосчууд болон тэдний гэр бүл"
+    }
+  },
+  "profile": {
+    "guest": "Зочин",
+    "signInSignUp": "Нэвтрэх / Бүртгүүлэх",
+    "visaLabel": "Виз: {{type}}",
+    "entryLabel": "Оролт: {{date}}",
+    "stayExpiration": "Оршин суух хугацаа дуусах",
+    "completed": "{{percent}}% Дууссан",
+    "settings": "Тохиргоо",
+    "editProfile": "Профайл засах",
+    "notifications": "Мэдэгдэл",
+    "language": "Хэл",
+    "helpSupport": "Тусламж & Дэмжлэг",
+    "logOut": "Гарах"
+  },
+  "community": {
+    "title": "Дэлхийн Нийгэмлэг",
+    "recentPosts": "Сүүлийн үеийн бичлэгүүд",
+    "createPost": "Бичлэг үүсгэх",
+    "postTitle": "Гарчиг",
+    "postContent": "Өөрийн бодлыг бичнэ үү...",
+    "postButton": "Нийтлэх",
+    "comments": "Сэтгэгдэл {{count}}",
+    "noPosts": "Одоогоор бичлэг алга. Анхныхыг нь хуваалцаарай!",
+    "selectCountry": "Улс сонгох",
+    "allCountries": "Бүгд",
+    "membershipRequired": "Энэ функц ирээдүйд дээд зэрэглэлийн гишүүдэд боломжтой болно.",
+    "deletePost": "Устгах",
+    "reportPost": "Мэдэгдэх",
+    "verificationRequired": "Verification Required",
+    "verificationRequiredDesc": "Only verified users can post. Please scan your ID.",
+    "featureInProgress": "This feature is coming soon.",
+    "confirmDelete": "Are you sure you want to delete this post?",
+    "deleteInProgress": "Delete feature coming soon.",
+    "reportSubmitted": "Report submitted.",
+    "userBlocked": "User blocked."
+  },
+  "tabs": {
+    "home": "Нүүр",
+    "community": "Нийгэмлэг",
+    "my": "Миний"
   }
 }

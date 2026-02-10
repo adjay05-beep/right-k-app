@@ -8,8 +8,6 @@ import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { NoticeCard } from '../../components/ui/NoticeCard';
 import { ScreenHeader } from '../../components/ui/ScreenHeader';
-import { TextField } from '../../components/ui/TextField';
-import { VisaDropdown } from '../../components/visa/VisaDropdown';
 import { COLORS, RADIUS, SPACING, TYPOGRAPHY } from '../../constants/design-system';
 import { VISA_TYPES } from '../../constants/visa-policy-data';
 import { useVisaStore } from '../../store/visaStore';
@@ -192,16 +190,6 @@ export default function VisaStatusScreen() {
                 title={t('visaStatus.title')}
                 colors={[COLORS.secondary[800], COLORS.secondary[900]]}
                 onBack={handleBack}
-                rightAction={
-                    <Button
-                        title={isEditing ? t('common.cancel') : t('visaStatus.editMode')}
-                        onPress={handleEditToggle}
-                        variant="ghost"
-                        size="sm"
-                        style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                        icon={<MaterialIcons name="edit" size={16} color={COLORS.white} />}
-                    />
-                }
             />
 
             <ScrollView contentContainerStyle={styles.content}>
@@ -234,127 +222,73 @@ export default function VisaStatusScreen() {
                     fullWidth
                 />
 
-                {isEditing ? (
-                    <>
-                        <View style={styles.formSection}>
-                            <Text style={styles.sectionTitle}>{t('visaStatus.foreignerInfo')}</Text>
-                            <TextField
-                                label={t('visaStatus.regNum')}
-                                value={editRegNumber}
-                                onChangeText={setEditRegNumber}
-                                placeholder="000000-0000000"
-                                keyboardType="numeric"
-                            />
-                            <TextField
-                                label={t('visaStatus.name')}
-                                value={editName}
-                                onChangeText={setEditName}
-                                placeholder="Name"
-                            />
-                            <TextField
-                                label={t('visaStatus.country')}
-                                value={editCountry}
-                                onChangeText={setEditCountry}
-                                placeholder="Country"
-                            />
+                {/* View Mode Only - Manual Edit Removed per request */}
+                <Card>
+                    <View style={styles.cardHeader}>
+                        <View>
+                            <Text style={styles.cardLabel}>{t('visaStatus.currentVisa')}</Text>
+                            <Text style={styles.cardValueLarge}>{visaType || '-'}</Text>
                         </View>
-
-                        {/* Visa Details Form */}
-                        <View style={styles.formSection}>
-                            <Text style={styles.sectionTitle}>{t('visaStatus.visaDetails')}</Text>
-                            <View style={{ marginBottom: SPACING.md }}>
-                                <Text style={TYPOGRAPHY.label}>{t('visaStatus.visaType')}</Text>
-                                <VisaDropdown selectedVisaCode={editType} onSelect={setEditType} />
-                            </View>
-                            <TextField
-                                label={t('visaStatus.expiryDate')}
-                                value={editExpiry}
-                                onChangeText={setEditExpiry}
-                                placeholder="YYYY-MM-DD"
-                            />
-                            <TextField
-                                label={t('visaStatus.issueDate')}
-                                value={editIssue}
-                                onChangeText={setEditIssue}
-                                placeholder="YYYY-MM-DD"
-                            />
+                        <View style={[styles.dDayBadge, isPositive ? styles.dDaySuccess : styles.dDayDanger]}>
+                            <Text style={[styles.dDayText, isPositive ? styles.textSuccess : styles.textDanger]}>
+                                {dDay}
+                            </Text>
                         </View>
+                    </View>
 
-                        <Button
-                            title={t('visaStatus.saveChanges')}
-                            onPress={handleSave}
-                            variant="primary"
-                            style={styles.saveButton}
-                        />
-                    </>
-                ) : (
-                    <Card>
-                        <View style={styles.cardHeader}>
-                            <View>
-                                <Text style={styles.cardLabel}>{t('visaStatus.currentVisa')}</Text>
-                                <Text style={styles.cardValueLarge}>{visaType || '-'}</Text>
-                            </View>
-                            <View style={[styles.dDayBadge, isPositive ? styles.dDaySuccess : styles.dDayDanger]}>
-                                <Text style={[styles.dDayText, isPositive ? styles.textSuccess : styles.textDanger]}>
-                                    {dDay}
-                                </Text>
-                            </View>
+                    {name ? (
+                        <View style={styles.profileSection}>
+                            <Text style={styles.profileName}>{name}</Text>
+                            <Text style={styles.profileDetails}>{country} • {regNumber}</Text>
                         </View>
+                    ) : null}
 
-                        {name ? (
-                            <View style={styles.profileSection}>
-                                <Text style={styles.profileName}>{name}</Text>
-                                <Text style={styles.profileDetails}>{country} • {regNumber}</Text>
-                            </View>
-                        ) : null}
+                    <View style={styles.divider} />
 
-                        <View style={styles.divider} />
-
-                        <View style={styles.dataRow}>
-                            <View style={styles.dataCol}>
-                                <Text style={styles.dataLabel}>{t('visaStatus.issueDate')}</Text>
-                                <Text style={styles.dataValue}>{issueDate || '-'}</Text>
-                            </View>
-                            <View style={styles.dataCol}>
-                                <Text style={styles.dataLabel}>{t('visaStatus.expiryDate')}</Text>
-                                <Text style={styles.dataValue}>{expiryDate || '-'}</Text>
-                            </View>
+                    <View style={styles.dataRow}>
+                        <View style={styles.dataCol}>
+                            <Text style={styles.dataLabel}>{t('visaStatus.issueDate')}</Text>
+                            <Text style={styles.dataValue}>{issueDate || '-'}</Text>
                         </View>
+                        <View style={styles.dataCol}>
+                            <Text style={styles.dataLabel}>{t('visaStatus.expiryDate')}</Text>
+                            <Text style={styles.dataValue}>{expiryDate || '-'}</Text>
+                        </View>
+                    </View>
 
 
-                        {/* Policy Info Section */}
-                        {visaType && VISA_TYPES[visaType] && (
-                            <View style={styles.policyContainer}>
-                                <Text style={styles.sectionTitle}>
-                                    {t(`visaTypes.${visaType}.name`)} Info
-                                </Text>
-                                <Text style={styles.policyDesc}>
-                                    {t(`visaTypes.${visaType}.description`)}
-                                </Text>
-                                {t(`visaTypes.${visaType}.salaryRequirement`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.salaryRequirement`) !== `visaTypes.${visaType}.salaryRequirement` && (
-                                    <View style={styles.policyRow}>
-                                        <Text style={styles.policyLabel}>Min. Salary:</Text>
-                                        <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.salaryRequirement`)}</Text>
-                                    </View>
-                                )}
-                                {t(`visaTypes.${visaType}.maxStay`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.maxStay`) !== `visaTypes.${visaType}.maxStay` && (
-                                    <View style={styles.policyRow}>
-                                        <Text style={styles.policyLabel}>Max Stay:</Text>
-                                        <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.maxStay`)}</Text>
-                                    </View>
-                                )}
-                                {Array.isArray(t(`visaTypes.${visaType}.notes`, { returnObjects: true })) && (
-                                    <View style={styles.policyNoteBox}>
-                                        <Text style={styles.policyNoteTitle}>Tips:</Text>
-                                        {(t(`visaTypes.${visaType}.notes`, { returnObjects: true }) as string[]).map((note, idx) => (
-                                            <Text key={idx} style={styles.policyNoteText}>• {note}</Text>
-                                        ))}
-                                    </View>
-                                )}
-                            </View>
-                        )}
-                    </Card>
-                )}
+                    {/* Policy Info Section */}
+                    {visaType && VISA_TYPES[visaType] && (
+                        <View style={styles.policyContainer}>
+                            <Text style={styles.sectionTitle}>
+                                {t(`visaTypes.${visaType}.name`)} {t('common.info')}
+                            </Text>
+                            <Text style={styles.policyDesc}>
+                                {t(`visaTypes.${visaType}.description`)}
+                            </Text>
+                            {t(`visaTypes.${visaType}.salaryRequirement`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.salaryRequirement`) !== `visaTypes.${visaType}.salaryRequirement` && (
+                                <View style={styles.policyRow}>
+                                    <Text style={styles.policyLabel}>{t('visaStatus.minSalary')}:</Text>
+                                    <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.salaryRequirement`)}</Text>
+                                </View>
+                            )}
+                            {t(`visaTypes.${visaType}.maxStay`, { defaultValue: '' }) !== '' && t(`visaTypes.${visaType}.maxStay`) !== `visaTypes.${visaType}.maxStay` && (
+                                <View style={styles.policyRow}>
+                                    <Text style={styles.policyLabel}>{t('visaStatus.maxStay')}:</Text>
+                                    <Text style={styles.policyValue}>{t(`visaTypes.${visaType}.maxStay`)}</Text>
+                                </View>
+                            )}
+                            {Array.isArray(t(`visaTypes.${visaType}.notes`, { returnObjects: true })) && (
+                                <View style={styles.policyNoteBox}>
+                                    <Text style={styles.policyNoteTitle}>{t('visaStatus.tips')}:</Text>
+                                    {(t(`visaTypes.${visaType}.notes`, { returnObjects: true }) as string[]).map((note, idx) => (
+                                        <Text key={idx} style={styles.policyNoteText}>• {note}</Text>
+                                    ))}
+                                </View>
+                            )}
+                        </View>
+                    )}
+                </Card>
             </ScrollView>
         </View>
     );

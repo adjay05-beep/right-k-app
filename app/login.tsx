@@ -1,10 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
-import DebugLogger from '../components/auth/DebugLogger';
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignupForm';
 import VerificationPending from '../components/auth/VerificationPending';
@@ -25,19 +23,10 @@ const styles = StyleSheet.create({
         marginBottom: 32,
         marginTop: 40,
     },
-    iconBox: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        backgroundColor: '#2563EB',
-        alignItems: 'center',
-        justifyContent: 'center',
+    logo: {
+        width: 288,
+        height: 90,
         marginBottom: 20,
-        shadowColor: '#2563EB',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 4,
     },
     title: {
         fontSize: 28,
@@ -72,12 +61,8 @@ export default function LoginScreen() {
     const [name, setName] = useState('');
     const [saveEmail, setSaveEmail] = useState(false);
 
-    // Debug logs
-    const [logs, setLogs] = useState<string[]>([]);
-
     const addLog = (msg: string) => {
         console.log(msg);
-        setLogs(prev => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev]);
     };
 
     // Load saved email on mount
@@ -254,13 +239,11 @@ export default function LoginScreen() {
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 {/* Header */}
                 <View style={styles.header}>
-                    <View style={styles.iconBox}>
-                        <MaterialIcons
-                            name={mode === 'login' ? "lock-person" : "person-add"}
-                            size={32}
-                            color="white"
-                        />
-                    </View>
+                    <Image
+                        source={require('../assets/logo.png')}
+                        style={styles.logo}
+                        resizeMode="contain"
+                    />
                     <Text style={styles.title}>
                         {mode === 'login' ? t('login.welcome') : t('login.createAccount')}
                     </Text>
@@ -312,9 +295,6 @@ export default function LoginScreen() {
                         />
                     )}
                 </View>
-
-                {/* Debug Logger */}
-                <DebugLogger logs={logs} visible={__DEV__} />
             </ScrollView>
         </KeyboardAvoidingView>
     );

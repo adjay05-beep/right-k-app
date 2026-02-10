@@ -33,7 +33,7 @@
     "ineligible_country": "{{country}}国籍原则上不属于支付对象。",
     "procedures": "申请注意事项",
     "disclaimer_title": "必需确认事项",
-    "disclaimer_text": "以上结果仅为估计值，实际支付可能性和金额可能会有所不同。请务必通过相关机构核实准确内容。",
+    "disclaimer_text": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results.",
     "disclaimer_contact": "咨询：国家养老金公团1355（无需区域号）/ www.nps.or.kr",
     "countries": {
       "PH": "菲律宾",
@@ -66,6 +66,13 @@
     "overseas_item_1": "一次性退还金支付申请书（需要公证）",
     "overseas_item_2": "海外本人名义账户副本",
     "overseas_item_3": "护照副本及国外移居申报书（居住护照持有人）"
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "location": "Location Terms",
+    "company_desc": "Visa management and lifestyle support for foreigners",
+    "customer_center": "Customer Center"
   },
   "login": {
     "welcome": "欢迎",
@@ -101,7 +108,12 @@
     "authFailed": "认证失败",
     "ok": "确认",
     "cancel": "取消",
-    "back": "返回"
+    "back": "返回",
+    "premiumRequired": "需要高级会员",
+    "upgradeToPremium": "此功能仅限高级会员使用。",
+    "showOriginal": "查看原文",
+    "translate": "翻译",
+    "translationFailed": "翻译失败。"
   },
   "dashboard": {
     "hello": "您好, {{name}}",
@@ -142,11 +154,11 @@
   "aiChat": {
     "title": "AI 咨询",
     "subtitle": "可以问有关任何事情",
-    "welcomeMessage": "你好！对在韩国生活或签证有疑问吗？",
+    "welcomeMessage": "Hello! How can I help you today?\n\nPlease note that AI-generated responses may contain inaccuracies. For critical matters, always verify information with an expert or official institution.",
     "error": "错误",
     "fetchError": "无法获取AI响应。请稍后再试。",
     "responseError": "抱歉，发生错误，无法提供答案。",
-    "disclaimer": "AI回答可能不准确，重要信息请务必通过官方渠道确认。",
+    "disclaimer": "The responses provided by this AI chatbot are for reference only and may not reflect real-time changes in laws or policies. For critical decisions regarding visa status or legal matters, please verify the facts with official authorities such as HiKorea or the competent Immigration Office.",
     "typing": "AI 正在输入...",
     "placeholder": "输入消息...",
     "systemPrompt": "你是帮助在韩国居住的外国人的AI助手。关于签证（尤其是F-5, F-2）、出入境政策、韩国生活信息，请准确且友好地回答。不是法律建议，重要事项需提示前往HiKorea或专家确认。请一直以此语言回答："
@@ -189,7 +201,7 @@
     "visaMaxPoints": "满分：{{max}}分",
     "scoreRangeHigh": "建议范围：{{min}}~{{max}}分以上",
     "scoreWarning": "较低（{{score}}分以下可能会较弱）",
-    "calculationNote": "此计算结果仅供参考，可能与实际审核结果不同，需正式确认。"
+    "calculationNote": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results."
   },
   "welcome": {
     "title1": "国际外籍人士，",
@@ -198,12 +210,6 @@
     "tryCalculator": "查看我的签证分数",
     "tryCalculatorSubtitle": "无需登录即可进行计算",
     "alreadyHaveAccount": "已有账户？登录"
-  },
-  "visaStatusCard": {
-    "title": "我的签证状态",
-    "noVisa": "无签证",
-    "expiresOn": "{{date}}到期",
-    "noExpiry": "未设置到期日"
   },
   "news": {
     "searchPlaceholder": "输入搜索词（例如：签证，F-5）",
@@ -265,7 +271,7 @@
     "personal": "个人文件（Personal）",
     "company": "公司文件（Company）",
     "legalDisclaimer": "法律声明（Legal Disclaimer）",
-    "legalContent": "Right K旨在提供信息，不提供实际文件代办或法律咨询。"
+    "legalContent": "The information provided by this service is for general guidance purposes only and does not constitute legal advice. For precise assessment of individual cases, please consult with a qualified professional (lawyer, administrative agent). Right K assumes no legal liability for any consequences arising from the use of this information."
   },
   "visaCalc": {
     "title": "签证分数计算器",
@@ -355,7 +361,7 @@
     "visaType": "签证种类",
     "expiryDate": "到期日",
     "currentVisa": "当前签证",
-    "infoDesc": "以上信息仅安全存储在应用程序内，不会外传。实际停留期可能有所不同，请在HiKorea确认准确信息。",
+    "infoDesc": "Your visa and personal information are securely encrypted and stored locally on your device; they are strictly not transmitted to or collected by external servers. As the displayed expiration date may differ from official records, please verify the exact details via HiKorea.",
     "scanComplete": "扫描完成（Scan Complete）",
     "scanSuccess": "注册证信息已成功更新。\n（外国人登记卡更新成功）",
     "scanFailed": "扫描失败（Scan Failed）",
@@ -384,5 +390,140 @@
     "doc_3": "医疗费用收据",
     "doc_4": "月租合同（如适用）",
     "actionBtn": "国税厅Home Tax直接访问"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "外交",
+      "description": "外交使节及其家属"
+    },
+    "A-2": {
+      "name": "公务",
+      "description": "执行国家公务"
+    },
+    "A-3": {
+      "name": "协定",
+      "description": "SOFA协定相关人员"
+    },
+    "B-1": {
+      "name": "免签",
+      "description": "免签协定国家国民"
+    },
+    "B-2": {
+      "name": "旅游通过",
+      "description": "观光或过境"
+    },
+    "C-1": {
+      "name": "短期采访",
+      "description": "短期新闻采访活动"
+    },
+    "C-3": {
+      "name": "短期访问",
+      "description": "旅游、探亲、参加活动"
+    },
+    "C-4": {
+      "name": "短期就业",
+      "description": "短期营利活动（讲演、模特等）"
+    },
+    "D-1": {
+      "name": "文化艺术",
+      "description": "学术或艺术活动"
+    },
+    "D-2": {
+      "name": "留学",
+      "description": "正规学位课程（学士~博士）"
+    },
+    "D-4": {
+      "name": "一般研修",
+      "description": "语言研修、技术研修"
+    },
+    "D-7": {
+      "name": "驻在",
+      "description": "外国企业驻韩分公司人员"
+    },
+    "D-8": {
+      "name": "企业投资",
+      "description": "外商投资企业经营/管理"
+    },
+    "D-9": {
+      "name": "贸易经营",
+      "description": "国际贸易经营"
+    },
+    "D-10": {
+      "name": "求职",
+      "description": "求职活动或实习"
+    },
+    "E-7-1": {
+      "name": "特定活动(专业)",
+      "description": "67个指定专业职种"
+    },
+    "E-7-2": {
+      "name": "特定活动(准专业)",
+      "description": "事务及服务业（免税店、医疗协调员等）"
+    },
+    "E-7-3": {
+      "name": "特定活动(一般技能)",
+      "description": "焊接、航空维修等技能职种"
+    },
+    "E-7-4": {
+      "name": "熟练技能",
+      "description": "E-9/H-2持有者的分数制选拔"
+    },
+    "E-9": {
+      "name": "非专业就业",
+      "description": "制造业、农畜产业等（EPS）"
+    },
+    "F-1-D": {
+      "name": "数字游民",
+      "description": "受雇于海外企业的远程工作者"
+    },
+    "F-2-7": {
+      "name": "居住(点数制)",
+      "description": "优秀专业人才/留学生的长期居留"
+    },
+    "F-4": {
+      "name": "在外同胞",
+      "description": "在外同胞及其直系亲属"
+    }
+  },
+  "profile": {
+    "guest": "访客",
+    "signInSignUp": "登录 / 注册",
+    "visaLabel": "签证: {{type}}",
+    "entryLabel": "入境: {{date}}",
+    "stayExpiration": "滞留期限",
+    "completed": "{{percent}}% 完成",
+    "settings": "设置",
+    "editProfile": "编辑个人资料",
+    "notifications": "通知",
+    "language": "语言",
+    "helpSupport": "帮助与支持",
+    "logOut": "退出登录"
+  },
+  "community": {
+    "title": "全球社区",
+    "recentPosts": "最新帖子",
+    "createPost": "发帖",
+    "postTitle": "标题",
+    "postContent": "写下你的想法...",
+    "postButton": "发布",
+    "comments": "评论 {{count}}",
+    "noPosts": "暂无帖子。快来发布第一条吧！",
+    "selectCountry": "选择国家",
+    "allCountries": "全部",
+    "membershipRequired": "此功能未来将仅限高级会员使用。",
+    "deletePost": "删除",
+    "reportPost": "举报",
+    "verificationRequired": "需要验证",
+    "verificationRequiredDesc": "只有经过验证的用户才能发帖。请扫描您的身份证。",
+    "featureInProgress": "此功能即将推出。",
+    "confirmDelete": "您确定要删除此帖子吗？",
+    "deleteInProgress": "删除功能即将推出。",
+    "reportSubmitted": "举报已提交。",
+    "userBlocked": "用户已屏蔽。"
+  },
+  "tabs": {
+    "home": "首页",
+    "community": "社区",
+    "my": "我的"
   }
 }

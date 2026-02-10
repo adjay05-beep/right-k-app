@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,6 +48,7 @@ app.get('/api/search', async (req, res) => {
         }
 
         const data = await response.json();
+        res.header('Content-Type', 'application/json');
         res.json(data);
 
     } catch (error) {

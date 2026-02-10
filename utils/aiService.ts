@@ -167,3 +167,32 @@ Example Output: ["안녕하세요", "세상"]
         return texts; // Fail safe
     }
 };
+
+/**
+ * Translate full text using GPT-4o
+ */
+export const translateFullText = async (
+    text: string,
+    targetLang: string = 'ko'
+): Promise<string> => {
+    if (!text.trim()) return '';
+
+    const systemPrompt = `
+You are a professional translator.
+Translate the following document text into language code "${targetLang}".
+Preserve the structure and formatting (newlines) as much as possible.
+Return ONLY the translated text. Do not add explanations.
+    `;
+
+    const result = await fetchOpenAICompletion(
+        [
+            { role: 'system', content: systemPrompt.trim() },
+            { role: 'user', content: text }
+        ],
+        "gpt-4o",
+        2000, // Allow more tokens for full document
+        0.3
+    );
+
+    return result || text; // Fallback to original if failed
+};

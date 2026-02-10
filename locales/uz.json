@@ -33,7 +33,7 @@
     "ineligible_country": "{{country}} millati odatda to'lov maqsadli emas.",
     "procedures": "Ilova qilishda diqqatingizni qaratish",
     "disclaimer_title": "Majburiy Tasdiq",
-    "disclaimer_text": "Yuqoridagi natija faqat taxminiy hisoblanadi va haqiqiy to'lov imkoniyatlari va summalari farq qilishi mumkin. Aniq ma'lumotni olish uchun rasmiy tashkilot bilan bog'laning.",
+    "disclaimer_text": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results.",
     "disclaimer_contact": "Aloqa: National Pension Service 1355 / www.nps.or.kr",
     "countries": {
       "PH": "Filippin",
@@ -66,6 +66,13 @@
     "overseas_item_1": "Lump-sum Refund to'lov talab qog'ozi (notarial tasdiqlash kerak)",
     "overseas_item_2": "Xorijdagi shaxsiy hisob raqam nusxasi",
     "overseas_item_3": "Pasport nusxasi va chet elga ko'chib o'tishi haqida xabarnoma (residence passport holda)"
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "location": "Location Terms",
+    "company_desc": "Visa management and lifestyle support for foreigners",
+    "customer_center": "Customer Center"
   },
   "login": {
     "welcome": "Xush kelibsiz",
@@ -101,7 +108,14 @@
     "authFailed": "Tasdiqlash muvaffaqiyatsiz tugadi",
     "ok": "Tasdiqlash",
     "cancel": "Bekor qilish",
-    "back": "Orqaga"
+    "back": "Orqaga",
+    "premiumRequired": "Premium Talab Qilinadi",
+    "upgradeToPremium": "Bu funksiya faqat Premium foydalanuvchilar uchun.",
+    "showOriginal": "Asl nusxani ko'rish",
+    "translate": "Tarjima qilish",
+    "translationFailed": "Tarjima qilinmadi.",
+    "verifyNow": "Verify Now",
+    "info": "Info"
   },
   "dashboard": {
     "hello": "Salom, {{name}}",
@@ -142,11 +156,11 @@
   "aiChat": {
     "title": "AI Konsultatsiya",
     "subtitle": "Har narsani so'rang",
-    "welcomeMessage": "Salom! Koreyada yashash yoki viza haqida savolingiz bormi?",
+    "welcomeMessage": "Hello! How can I help you today?\n\nPlease note that AI-generated responses may contain inaccuracies. For critical matters, always verify information with an expert or official institution.",
     "error": "Xatolik",
     "fetchError": "AI javobini olish imkoni bo'lmadi. Iltimos, birozdan keyin qayta urinib ko'ring.",
     "responseError": "Kechirasiz, xato yuz berdi, javob bera olmaymiz.",
-    "disclaimer": "AI javoblari aniq bo'lmasligi mumkin, shuning uchun muhim ma'lumotlarni rasmiy manbalardan tasdiqlang.",
+    "disclaimer": "The responses provided by this AI chatbot are for reference only and may not reflect real-time changes in laws or policies. For critical decisions regarding visa status or legal matters, please verify the facts with official authorities such as HiKorea or the competent Immigration Office.",
     "typing": "AI kirish jarayonida...",
     "placeholder": "Xabarni kiriting...",
     "systemPrompt": "Siz Koreyada yashovchi chet elliklarni yordam beruvchi AI yordamchisiz. Viza (ayniqsa, F-5, F-2), kirish-chiqish siyosati, Koreyada yashash ma'lumotlari haqida aniq va do'stona javoblar bering. Bu huquqiy maslahat emas va muhim masalalar bo'yicha HiKorea yoki mutaxassis bilan bog'lanishni o'rgatish. Har doim ushbu tilda javob bering: "
@@ -189,7 +203,7 @@
     "visaMaxPoints": "Maksimal ball: {{max}}",
     "scoreRangeHigh": "{{min}}~{{max}} dan yuqori taklif etiladi",
     "scoreWarning": "Past ({{score}} dan quyida, xavf mavjud)",
-    "calculationNote": "Ushbu hisoblardagi natijalar faqat ma'lumot uchun bo'lib, shaxsiy holatga qarab tekshiruv natijalari o'zgarishi mumkin, shuning uchun rasmiy tasdiqlash kerak."
+    "calculationNote": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results."
   },
   "welcome": {
     "title1": "Global Expat,",
@@ -258,7 +272,7 @@
     "personal": "Shaxsiy Hujjatlar",
     "company": "Kompaniya Hujjatlari",
     "legalDisclaimer": "Huquqiy Ogohlantirish",
-    "legalContent": "Right K faqat ma'lumotlarni taqdim etadi va haqiqiy hujjat yuritish yoki huquqiy konsultatsiya yuborilmaydi."
+    "legalContent": "The information provided by this service is for general guidance purposes only and does not constitute legal advice. For precise assessment of individual cases, please consult with a qualified professional (lawyer, administrative agent). Right K assumes no legal liability for any consequences arising from the use of this information."
   },
   "visaCalc": {
     "title": "Viza Ballari Kalkulyatori",
@@ -348,13 +362,17 @@
     "visaType": "Viza Turi",
     "expiryDate": "Amal qilish muddati",
     "currentVisa": "Joriy Viza",
-    "infoDesc": "Ushbu ma'lumotlar faqat ilovadagi saqlash joyida saqlanadi va tashqi tomonga yuborilmaydi. Haqiqiy yashash muddatini HiKorea'dan tasdiqlash tavsiya etiladi.",
+    "infoDesc": "Your visa and personal information are securely encrypted and stored locally on your device; they are strictly not transmitted to or collected by external servers. As the displayed expiration date may differ from official records, please verify the exact details via HiKorea.",
     "scanComplete": "Scan Tamomlandi (Scan Complete)",
     "scanSuccess": "Ro'yxatdan o'tish ma'lumotlari muvaffaqiyatli yangilandi.\n(Foreigner Registration Card updated)",
     "scanFailed": "Scan Muvaffaqiyatsiz (Scan Failed)",
     "scanError": "Tasvirni tahlil qilish imkoni yo'q. Qayta urinib ko'ring.\n(Could not analyze image)",
     "invalidDate": "Sana formati noto'g'ri (YYYY-MM-DD)",
-    "savedSuccess": "Saqlangan."
+    "savedSuccess": "Saqlangan.",
+    "minSalary": "Min. Annual Salary",
+    "maxStay": "Max Stay",
+    "tips": "Tips",
+    "koreaLifeGuide": "Korea Life Guide"
   },
   "tax": {
     "title": "Yil Yakunida Soliq Hisobi",
@@ -377,5 +395,140 @@
     "doc_3": "Tibbiy Hisoblar",
     "doc_4": "Ijara Shartnomasi (zarurat bo'yicha)",
     "actionBtn": "Soliq Boshqarma Hometax Sahifasiga O'tish"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "Diplomatik",
+      "description": "Diplomatlar va ularning oilalari"
+    },
+    "A-2": {
+      "name": "Rasmiy",
+      "description": "Davlat vazifalarini bajarish"
+    },
+    "A-3": {
+      "name": "Kelishuv",
+      "description": "SOFA kelishuvi xodimlari"
+    },
+    "B-1": {
+      "name": "Vizasiz",
+      "description": "Vizasiz kelishuv davlatlari fuqarolari"
+    },
+    "B-2": {
+      "name": "Turizm/Tranzit",
+      "description": "Sayohat yoki tranzit"
+    },
+    "C-1": {
+      "name": "Vaqtinchalik Jurnalist",
+      "description": "Qisqa muddatli yangiliklar faoliyati"
+    },
+    "C-3": {
+      "name": "Qisqa Muddatli Tashrif",
+      "description": "Turizm, qarindoshlarni ko'rish, tadbirlar"
+    },
+    "C-4": {
+      "name": "Qisqa Muddatli Ish",
+      "description": "Qisqa muddatli daromadli faoliyat"
+    },
+    "D-1": {
+      "name": "Madaniyat/San'at",
+      "description": "Akademik yoki badiiy faoliyat"
+    },
+    "D-2": {
+      "name": "Talaba",
+      "description": "Rasmiy daraja dasturi (Bakalavr~Doktor)"
+    },
+    "D-4": {
+      "name": "Umumiy Ta'lim",
+      "description": "Til o'rganish, texnik ta'lim"
+    },
+    "D-7": {
+      "name": "Kompaniya Ichida O'tkazish",
+      "description": "Xorijiy kompaniyaning Koreya filialidagi xodimlar"
+    },
+    "D-8": {
+      "name": "Korporativ Sarmoya",
+      "description": "Xorijiy investitsiya kompaniyasini boshqarish"
+    },
+    "D-9": {
+      "name": "Savdo Boshqaruvi",
+      "description": "Xalqaro savdo boshqaruvi"
+    },
+    "D-10": {
+      "name": "Ish Qidiruvchi",
+      "description": "Ish qidirish yoki stajirovka"
+    },
+    "E-7-1": {
+      "name": "Professional",
+      "description": "67 ta maxsus kasb"
+    },
+    "E-7-2": {
+      "name": "Yarim Professional",
+      "description": "Xizmat va savdo (Duty free, tibbiy koordinator va boshqalar)"
+    },
+    "E-7-3": {
+      "name": "Umumiy Malakali",
+      "description": "Payvandlash, aviatsiya ta'mirlash va boshqalar"
+    },
+    "E-7-4": {
+      "name": "Malakali Ishchi",
+      "description": "E-9/H-2 egalaridan ball tizimi orqali tanlash"
+    },
+    "E-9": {
+      "name": "Professional Bo'lmagan",
+      "description": "Ishlab chiqarish, qishloq xo'jaligi va boshqalar (EPS)"
+    },
+    "F-1-D": {
+      "name": "Raqamli Ko'chmanchi",
+      "description": "Xorijiy kompaniyada masofadan ishlash"
+    },
+    "F-2-7": {
+      "name": "Rezident (Ballar)",
+      "description": "Yuqori malakali mutaxassislar/talabalar uchun uzoq muddatli yashash"
+    },
+    "F-4": {
+      "name": "Chet Eldagi Koreys",
+      "description": "Chet el koreyslari va ularning oilalari"
+    }
+  },
+  "profile": {
+    "guest": "Mehmon",
+    "signInSignUp": "Kirish / Ro'yxatdan o'tish",
+    "visaLabel": "Viza: {{type}}",
+    "entryLabel": "Kirish: {{date}}",
+    "stayExpiration": "Qolish muddati",
+    "completed": "{{percent}}% Bajarildi",
+    "settings": "Sozlamalar",
+    "editProfile": "Profilni Tahrirlash",
+    "notifications": "Bildirishnomalar",
+    "language": "Til",
+    "helpSupport": "Yordam va Qo'llab-quvvatlash",
+    "logOut": "Chiqish"
+  },
+  "community": {
+    "title": "Global Jamiyat",
+    "recentPosts": "Oxirgi Postlar",
+    "createPost": "Post Yaratish",
+    "postTitle": "Sarlavha",
+    "postContent": "O'z fikringizni yozing...",
+    "postButton": "Joylashtirish",
+    "comments": "Izohlar {{count}}",
+    "noPosts": "Hozircha post yo'q. Birinchi bo'lib ulashing!",
+    "selectCountry": "Mamlakatni Tanlash",
+    "allCountries": "Hammasi",
+    "membershipRequired": "Bu funksiya kelajakda premium a'zolar uchun mavjud bo'ladi.",
+    "deletePost": "O'chirish",
+    "reportPost": "Xabar berish",
+    "verificationRequired": "Verification Required",
+    "verificationRequiredDesc": "Only verified users can post. Please scan your ID.",
+    "featureInProgress": "This feature is coming soon.",
+    "confirmDelete": "Are you sure you want to delete this post?",
+    "deleteInProgress": "Delete feature coming soon.",
+    "reportSubmitted": "Report submitted.",
+    "userBlocked": "User blocked."
+  },
+  "tabs": {
+    "home": "Bosh Sahifa",
+    "community": "Jamiyat",
+    "my": "Men"
   }
 }

@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     touchable: {
         width: '30%',
-        aspectRatio: 0.9,
+        height: 115,
         borderRadius: 16,
         overflow: 'hidden',
         // Shadow for depth

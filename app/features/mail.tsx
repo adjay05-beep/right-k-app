@@ -133,6 +133,17 @@ export default function MailScreen() {
                                 </View>
                             </View>
 
+                            {/* Translated Text Section */}
+                            {result.translatedText && (
+                                <View style={styles.translationContainer}>
+                                    <View style={styles.translationHeader}>
+                                        <MaterialIcons name="translate" size={20} color={COLORS.primary[600]} />
+                                        <Text style={styles.translationTitle}>한국어 번역 (Korean Translation)</Text>
+                                    </View>
+                                    <Text style={styles.translationText}>{result.translatedText}</Text>
+                                </View>
+                            )}
+
                             <Text style={styles.resultDesc}>
                                 {result.summary}
                             </Text>
@@ -410,5 +421,29 @@ const styles = StyleSheet.create({
         fontSize: 11,
         color: COLORS.text.tertiary,
         fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
+    },
+    translationContainer: {
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        borderRadius: RADIUS.md,
+        padding: SPACING.md,
+        marginVertical: SPACING.md,
+        borderLeftWidth: 4,
+        borderLeftColor: COLORS.primary[500],
+    },
+    translationHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: SPACING.sm,
+    },
+    translationTitle: {
+        ...TYPOGRAPHY.h3,
+        marginLeft: SPACING.sm,
+        color: COLORS.primary[700],
+        fontSize: 16,
+    },
+    translationText: {
+        ...TYPOGRAPHY.body,
+        color: COLORS.text.primary,
+        lineHeight: 24,
     },
 });

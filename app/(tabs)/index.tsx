@@ -6,8 +6,9 @@ import { useAuthStore } from '../../store/authStore';
 import { auth } from '../../utils/firebase';
 
 import { AIChatEntry } from '../../components/home/AIChatEntry';
+import { CommunityPreview } from '../../components/home/CommunityPreview';
+import { HomeFooter } from '../../components/home/HomeFooter';
 import { HomeHeader } from '../../components/home/HomeHeader';
-import { HomeNews } from '../../components/home/HomeNews';
 import { QuickActions } from '../../components/home/QuickActions';
 import { SecondaryActions } from '../../components/home/SecondaryActions';
 import { VisaStatusCard } from '../../components/home/VisaStatusCard';
@@ -36,10 +37,12 @@ export default function HomeScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <HomeHeader userName={userName} />
         <VisaStatusCard />
+        <CommunityPreview />
         <QuickActions />
         <AIChatEntry />
         <SecondaryActions />
-        <HomeNews />
+        {/* <HomeNews /> */}
+        <HomeFooter />
       </ScrollView>
     </LiquidBackground>
   );

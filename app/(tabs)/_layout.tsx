@@ -18,12 +18,22 @@ export default function TabLayout() {
         name="index"
         options={{
           title: t('tabs.home'),
-          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🏠</Text>, // 아이콘 대체
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🏠</Text>,
           tabBarLabel: t('tabs.home'),
         }}
       />
 
-      {/* 2. 내 정보 탭 (추후 개발용 자리) */}
+      {/* 2. 커뮤니티 탭 */}
+      <Tabs.Screen
+        name="community"
+        options={{
+          title: t('tabs.community'),
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>💬</Text>,
+          tabBarLabel: t('tabs.community'),
+        }}
+      />
+
+      {/* 3. 내 정보 탭 */}
       <Tabs.Screen
         name="profile"
         options={{

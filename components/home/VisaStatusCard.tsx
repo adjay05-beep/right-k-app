@@ -26,15 +26,13 @@ export const VisaStatusCard = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.sectionTitle}>{t('visaStatusCard.title')}</Text>
-            </View>
             <TouchableOpacity
                 style={styles.touchable}
                 activeOpacity={0.8}
                 onPress={() => router.push('/features/visa-status')}
             >
                 <BlurView intensity={60} tint="light" style={styles.card}>
+                    <Text style={styles.cardTitle}>{t('visaStatusCard.title')}</Text>
                     <View style={styles.content}>
                         {/* Removed iconBox */}
                         <View style={styles.info}>
@@ -85,6 +83,14 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
         padding: SPACING.md,
+    },
+    cardTitle: {
+        fontSize: 12,
+        color: COLORS.text.tertiary,
+        fontWeight: '600',
+        marginBottom: SPACING.sm,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
     },
     content: {
         flexDirection: 'row',

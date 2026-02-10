@@ -33,7 +33,7 @@
     "ineligible_country": "โดยหลักการแล้วสัญชาติ {{country}} ไม่มีสิทธิ์รับเงิน",
     "procedures": "ข้อมูลที่ต้องรู้เมื่อสมัคร",
     "disclaimer_title": "การยืนยันที่จำเป็น",
-    "disclaimer_text": "ผลลัพธ์ที่ปรากฏเป็นเพียงการประมาณการณ์ การจ่ายจริงและจำนวนเงินอาจแตกต่าง โปรดยืนยันข้อมูลที่แน่ชัดกับหน่วยงานที่เกี่ยวข้อง",
+    "disclaimer_text": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results.",
     "disclaimer_contact": "สอบถามข้อมูล: สำนักงาน National Pension 1355 หรือ www.nps.or.kr",
     "countries": {
       "PH": "ฟิลิปปินส์",
@@ -66,6 +66,13 @@
     "overseas_item_1": "คำขอรับเงินแบบ Lump-sum Refund ที่ต้องมีการรับรองเอกสาร",
     "overseas_item_2": "สำเนาบัญชีธนาคารในชื่อของคุณในต่างประเทศ",
     "overseas_item_3": "สำเนาพาสปอร์ตและหนังสือเดินทางทะเบียนอพยพ (สำหรับผู้อยู่อาศัยที่มีพาสปอร์ตและที่อยู่ถาวร)"
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "location": "Location Terms",
+    "company_desc": "Visa management and lifestyle support for foreigners",
+    "customer_center": "Customer Center"
   },
   "login": {
     "welcome": "ยินดีต้อนรับ",
@@ -101,7 +108,14 @@
     "authFailed": "การรับรองล้มเหลว",
     "ok": "ตกลง",
     "cancel": "ยกเลิก",
-    "back": "ย้อนกลับ"
+    "back": "ย้อนกลับ",
+    "premiumRequired": "จำเป็นต้องเป็นสมาชิกพรีเมียม",
+    "upgradeToPremium": "ฟีเจอร์นี้สำหรับสมาชิกพรีเมียมเท่านั้น",
+    "showOriginal": "ดูต้นฉบับ",
+    "translate": "แปลภาษา",
+    "translationFailed": "การแปลล้มเหลว",
+    "verifyNow": "Verify Now",
+    "info": "Info"
   },
   "dashboard": {
     "hello": "สวัสดี, คุณ {{name}}",
@@ -142,11 +156,11 @@
   "aiChat": {
     "title": "AI Consultation (Beta)",
     "subtitle": "ถามอะไรก็ได้",
-    "welcomeMessage": "สวัสดีค่ะ มีคำถามเกี่ยวกับการใช้ชีวิตในเกาหลีหรือวีซ่าหรือไม่?",
+    "welcomeMessage": "Hello! How can I help you today?\n\nPlease note that AI-generated responses may contain inaccuracies. For critical matters, always verify information with an expert or official institution.",
     "error": "ข้อผิดพลาด",
     "fetchError": "ไม่สามารถรับคำตอบของ AI ได้. กรุณาลองใหม่อีกครั้งเล็กน้อย",
     "responseError": "ขออภัย เกิดข้อผิดพลาดจึงไม่สามารถให้คำตอบได้",
-    "disclaimer": "AI ตอบอาจไม่แม่นยำ กรุณาตรวจสอบข้อมูลสำคัญจากแหล่งที่มาต่างๆ ที่เชื่อถือได้",
+    "disclaimer": "The responses provided by this AI chatbot are for reference only and may not reflect real-time changes in laws or policies. For critical decisions regarding visa status or legal matters, please verify the facts with official authorities such as HiKorea or the competent Immigration Office.",
     "typing": "AI กำลังพิมพ์...",
     "placeholder": "ป้อนข้อความที่นี่...",
     "systemPrompt": "คุณคือผู้ช่วย AI ที่ช่วยเหลือชาวต่างชาติในเกาหลีให้มีความรู้เกี่ยวกับวีซ่า (โดยเฉพาะ F-5, F-2), นโยบายการเข้าออกประเทศ, ข้อมูลชีวิตในเกาหลี คำตอบที่เป็นประโยชน์และปลอดภัย การแนะนำเรื่องสำคัญต้องเช็คกับ HiKorea หรือผู้เชี่ยวชาญ และโปรดตอบคำถามในภาษานี้: "
@@ -189,7 +203,7 @@
     "visaMaxPoints": "คะแนนสูงสุด: {{max}}",
     "scoreRangeHigh": "แนะนำตั้งแต่ {{min}} ถึง {{max}}",
     "scoreWarning": "ต่ำ (อาจมีความเสี่ยงถ้าต่ำกว่า {{score}})",
-    "calculationNote": "ผลลัพธ์ที่คำนวณนี้เป็นเพียงสำหรับการอ้างอิงและอาจแตกต่างจากผลลัพธ์ทางการ จำเป็นต้องตรวจสอบข้อมูลอย่างเป็นทางการอีกครั้ง"
+    "calculationNote": "The simulation results are estimates based on the input data. Actual screening outcomes or payment amounts may vary depending on relevant laws at the time of application, exchange rates, and individual residence history. No legal warranties are made regarding these results."
   },
   "welcome": {
     "title1": "Global Expat,",
@@ -258,7 +272,7 @@
     "personal": "เอกสารส่วนตัว",
     "company": "เอกสารบริษัท",
     "legalDisclaimer": "ข้อความปฏิเสธความรับผิดชอบทางกฎหมาย",
-    "legalContent": "Right K ให้ข้อมูลเพื่อใช้ในการอ้างอิงเท่านั้น ไม่ได้ให้บริการยื่นเอกสารหรือคำปรึกษากฎหมาย"
+    "legalContent": "The information provided by this service is for general guidance purposes only and does not constitute legal advice. For precise assessment of individual cases, please consult with a qualified professional (lawyer, administrative agent). Right K assumes no legal liability for any consequences arising from the use of this information."
   },
   "visaCalc": {
     "title": "เครื่องคำนวณคะแนนวีซ่า",
@@ -348,13 +362,17 @@
     "visaType": "ประเภทวีซ่า",
     "expiryDate": "วันที่หมดอายุ",
     "currentVisa": "วีซ่าปัจจุบัน",
-    "infoDesc": "ข้อมูลนี้ถูกเก็บไว้อย่างปลอดภัยในแอปพลิเคชันและจะไม่ส่งออกไปยังภายนอก อาจมีความแตกต่างจากระยะเวลาที่พำนักจริง โปรดตรวจสอบข้อมูลที่แน่ชัดกับ HiKorea",
+    "infoDesc": "Your visa and personal information are securely encrypted and stored locally on your device; they are strictly not transmitted to or collected by external servers. As the displayed expiration date may differ from official records, please verify the exact details via HiKorea.",
     "scanComplete": "การสแกนเสร็จสมบูรณ์",
     "scanSuccess": "อัปเดตข้อมูลบัตรลงทะเบียนคนต่างด้าวเรียบร้อยแล้ว",
     "scanFailed": "การสแกนล้มเหลว",
     "scanError": "ไม่สามารถวิเคราะห์ภาพได้ กรุณาลองใหม่",
     "invalidDate": "รูปแบบวันที่ไม่ถูกต้อง (YYYY-MM-DD)",
-    "savedSuccess": "บันทึกเรียบร้อยแล้ว"
+    "savedSuccess": "บันทึกเรียบร้อยแล้ว",
+    "minSalary": "Min. Annual Salary",
+    "maxStay": "Max Stay",
+    "tips": "Tips",
+    "koreaLifeGuide": "Korea Life Guide"
   },
   "tax": {
     "title": "คู่มือการคำนวณภาษีสิ้นปี",
@@ -377,5 +395,140 @@
     "doc_3": "ใบเสร็จค่ารักษาพยาบาล",
     "doc_4": "สัญญาเช่าช่วง (ถ้ามี)",
     "actionBtn": "เข้าสู่โฮมแท็กซ์ของสรรพากร"
+  },
+  "visaTypes": {
+    "A-1": {
+      "name": "การทูต",
+      "description": "ทูตและครอบครัว"
+    },
+    "A-2": {
+      "name": "ราชการ",
+      "description": "ปฏิบัติหน้าที่ราชการ"
+    },
+    "A-3": {
+      "name": "ความตกลง",
+      "description": "ภายใต้ข้อตกลง SOFA"
+    },
+    "B-1": {
+      "name": "ยกเว้นวีซ่า",
+      "description": "ประเทศที่ได้รับการยกเว้นวีซ่า"
+    },
+    "B-2": {
+      "name": "ท่องเที่ยว/ผ่านแดน",
+      "description": "ท่องเที่ยวหรือแวะพัก"
+    },
+    "C-1": {
+      "name": "ข่าวด่วน",
+      "description": "กิจกรรมข่าวชั่วคราว"
+    },
+    "C-3": {
+      "name": "เยี่ยมเยียนชั่วคราว",
+      "description": "ท่องเที่ยว, เยี่ยมญาติ, ร่วมงานต่างๆ"
+    },
+    "C-4": {
+      "name": "จ้างงานระยะสั้น",
+      "description": "กิจกรรมทำกำไรระยะสั้น (บรรยาย, ถ่ายแบบ ฯลฯ)"
+    },
+    "D-1": {
+      "name": "วัฒนธรรม/ศิลปะ",
+      "description": "กิจกรรมทางวิชาการหรือศิลปะ"
+    },
+    "D-2": {
+      "name": "ศึกษาต่อ",
+      "description": "หลักสูตรปริญญา (ตรี~เอก)"
+    },
+    "D-4": {
+      "name": "ฝึกอบรมทั่วไป",
+      "description": "เรียนภาษา, ฝึกอาชีพ"
+    },
+    "D-7": {
+      "name": "โอนย้ายภายในบริษัท",
+      "description": "พนักงานบริษัทต่างชาติสาขาเกาหลี"
+    },
+    "D-8": {
+      "name": "ลงทุนองค์กร",
+      "description": "บริหาร/จัดการบริษัทลงทุนต่างชาติ"
+    },
+    "D-9": {
+      "name": "จัดการการค้า",
+      "description": "บริหารจัดการการค้าระหว่างประเทศ"
+    },
+    "D-10": {
+      "name": "หางาน",
+      "description": "หางานหรือฝึกงาน"
+    },
+    "E-7-1": {
+      "name": "ผู้เชี่ยวชาญ",
+      "description": "67 สาขาอาชีพเฉพาะ"
+    },
+    "E-7-2": {
+      "name": "กึ่งผู้เชี่ยวชาญ",
+      "description": "งานบริการและการขาย (ร้านปลอดภาษี ฯลฯ)"
+    },
+    "E-7-3": {
+      "name": "ทักษะทั่วไป",
+      "description": "ช่างเชื่อม, ช่างซ่อมเครื่องบิน ฯลฯ"
+    },
+    "E-7-4": {
+      "name": "แรงงานมีฝีมือ",
+      "description": "คัดเลือกจากผู้ถือวีซ่า E-9/H-2 ด้วยระบบคะแนน"
+    },
+    "E-9": {
+      "name": "แรงงานทั่วไป",
+      "description": "การผลิต, เกษตรกรรม ฯลฯ (EPS)"
+    },
+    "F-1-D": {
+      "name": "ดิจิทัลโนแมด",
+      "description": "ทำงานทางไกลให้กับบริษัทต่างประเทศ"
+    },
+    "F-2-7": {
+      "name": "พำนักระยะยาว",
+      "description": "สำหรับผู้เชี่ยวชาญ/นักเรียนที่มีศักยภาพ"
+    },
+    "F-4": {
+      "name": "ชาวเกาหลีโพ้นทะเล",
+      "description": "ชาวเกาหลีในต่างแดนและครอบครัว"
+    }
+  },
+  "profile": {
+    "guest": "ผู้เยี่ยมชม",
+    "signInSignUp": "เข้าสู่ระบบ / ลงทะเบียน",
+    "visaLabel": "วีซ่า: {{type}}",
+    "entryLabel": "เข้าเมือง: {{date}}",
+    "stayExpiration": "วันครบกำหนดพำนัก",
+    "completed": "เสร็จสมบูรณ์ {{percent}}%",
+    "settings": "การตั้งค่า",
+    "editProfile": "แก้ไขข้อมูลส่วนตัว",
+    "notifications": "การแจ้งเตือน",
+    "language": "ภาษา",
+    "helpSupport": "ช่วยเหลือและสนับสนุน",
+    "logOut": "ออกจากระบบ"
+  },
+  "community": {
+    "title": "ชุมชนทั่วโลก",
+    "recentPosts": "โพสต์ล่าสุด",
+    "createPost": "สร้างโพสต์",
+    "postTitle": "หัวข้อ",
+    "postContent": "เขียนความคิดเห็นของคุณ...",
+    "postButton": "โพสต์",
+    "comments": "ความคิดเห็น {{count}}",
+    "noPosts": "ยังไม่มีโพสต์ เป็นคนแรกที่แบ่งปัน!",
+    "selectCountry": "เลือกประเทศ",
+    "allCountries": "ทั้งหมด",
+    "membershipRequired": "ฟีเจอร์นี้จะเปิดให้สมาชิกพรีเมียมใช้ในอนาคต",
+    "deletePost": "ลบ",
+    "reportPost": "รายงาน",
+    "verificationRequired": "ต้องการการยืนยัน",
+    "verificationRequiredDesc": "เฉพาะผู้ใช้ที่ได้รับการยืนยันเท่านั้นที่สามารถโพสต์ได้ โปรดสแกนบัตรประจำตัวของคุณ",
+    "featureInProgress": "คุณสมบัตินี้กำลังจะมาเร็วๆ นี้",
+    "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?",
+    "deleteInProgress": "ฟีเจอร์ลบกำลังจะมาเร็วๆ นี้",
+    "reportSubmitted": "ส่งรายงานแล้ว",
+    "userBlocked": "บล็อกผู้ใช้แล้ว"
+  },
+  "tabs": {
+    "home": "หน้าหลัก",
+    "community": "ชุมชน",
+    "my": "ข้อมูลส่วนตัว"
   }
 }

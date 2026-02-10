@@ -16,12 +16,16 @@ interface AuthState {
     signUp: (email: string, pass: string) => Promise<User | null>;
     logout: () => Promise<void>;
     checkUser: () => void;
+    isPremium: boolean;
+    setPremium: (isPremium: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
     user: null,
     isLoading: true,
     error: null,
+    isPremium: false, // Default to false
+    setPremium: (isPremium) => set({ isPremium }),
 
     signIn: async (email, pass) => {
         set({ isLoading: true, error: null });

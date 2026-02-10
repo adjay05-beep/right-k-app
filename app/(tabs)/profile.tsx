@@ -104,7 +104,7 @@ export default function ProfileScreen() {
     const progress = calculateProgress();
     const progressPercent = Math.round(progress * 100);
 
-    const displayName = user?.displayName || user?.email?.split('@')[0] || "Guest";
+    const displayName = user?.displayName || user?.email?.split('@')[0] || t('dashboard.guest');
 
     return (
         <View className="flex-1 bg-white">

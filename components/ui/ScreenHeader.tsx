@@ -3,6 +3,7 @@ import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, SPACING } from '../../constants/design-system';
 
 interface ScreenHeaderProps {
@@ -27,9 +28,17 @@ export const ScreenHeader = ({
         else router.back();
     };
 
-    return (
+    const insets = useSafeAreaInsets();
 
-        <BlurView intensity={80} tint="light" style={styles.container}>
+    return (
+        <BlurView
+            intensity={80}
+            tint="light"
+            style={[
+                styles.container,
+                { paddingTop: insets.top > 0 ? insets.top : 20 }
+            ]}
+        >
             <View style={styles.headerRow}>
                 {/* Left: Back Button */}
                 <View style={styles.leftContainer}>
@@ -61,7 +70,7 @@ export const ScreenHeader = ({
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: SPACING.lg,
-        paddingTop: 44, // Minimal safe area
+        // paddingTop: 44, // Removed fixed padding
         paddingBottom: SPACING.sm, // Compact bottom padding
         backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent fallback
         borderBottomWidth: 1,
